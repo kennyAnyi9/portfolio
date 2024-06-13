@@ -5,7 +5,7 @@ interface HeaderProps {
   helpText: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ title, helpText }) => {
+const Header: React.FC<HeaderProps> = ({ title }) => {
   return (
     <>
       <div className="flex items-center gap-2 px-2 pt-1 border-b border-[#181818]">

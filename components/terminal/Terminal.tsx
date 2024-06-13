@@ -11,7 +11,7 @@ export default function Terminal() {
   const help = ["github", "toolkit", "blog", "projects", "contact"];
 
   return (
-    <div className="w-full relative z-20 h-44 mx-auto overflow-auto border backdrop-blur-[2px] rounded border-[#181818] no-scrollbar">
+    <div className="w-full relative z-20 h-44 mx-auto overflow-auto border backdrop-blur-[4px] rounded border-[#181818] no-scrollbar">
       {" "}
       <Header title="Terminal" helpText="'$help' for assistance" />
       <div className="inline-flex gap-1 text-white items-center text-xs p-3 opacity-50">
