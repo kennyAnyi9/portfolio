@@ -6,7 +6,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center gap-5 mx-auto">
       {/* cooking */}
       <div className="flex flex-col mt-[3rem] w-full">
-        <h1 className="font-normal">cooking 👨‍🍳</h1>
+        <h1 className="font-normal">cooking 💻</h1>
         <div className="flex flex-col justify-center items-start w-full  gap-2">
           <Link target="_blank" className="flex flex-col w-full" href="#">
             <p className=" text-sm hover:underline leading-7">
