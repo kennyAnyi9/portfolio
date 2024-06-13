@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} font-primary max-w-xl space-y-5 mt-[3rem] mx-auto`}
+        className={`${GeistSans.variable} ${GeistMono.variable} font-primary max-w-xl px-5 lg:px-0 space-y-5 mt-[3rem] mx-auto`}
       >
         {" "}
         <GridPattern
