@@ -47,14 +47,6 @@ export default function useCommandHandler() {
         setOutput([]);
         return;
 
-      case "hello":
-        command.trim().toLowerCase();
-        setCommand("");
-        superCommandHandler([
-          `Hey there! I'm Kennedy Anyidoho.I am passionate about creating software experiences that feel Streamlined & efficient.`,
-        ]);
-        return;
-
       case "blog":
         command.trim().toLowerCase();
         router.push("/blog");
@@ -70,9 +62,7 @@ export default function useCommandHandler() {
 
       default:
         command.trim().toLowerCase();
-        superCommandHandler([
-          "Invalid command. Type 'clear' or try again by typing any of the commands above",
-        ]);
+        superCommandHandler(["Invalid command. Type 'clear' or try again"]);
         break;
     }
   };

@@ -4,16 +4,11 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center gap-5 mx-auto">
-      <Terminal />
       {/* cooking */}
       <div className="flex flex-col mt-[3rem] w-full">
         <h1 className="font-normal">cooking 👨‍🍳</h1>
         <div className="flex flex-col justify-center items-start w-full  gap-2">
-          <Link
-            target="_blank"
-            className="flex flex-col w-full"
-            href="https://starter.rasmic.xyz/"
-          >
+          <Link target="_blank" className="flex flex-col w-full" href="#">
             <p className=" text-sm hover:underline leading-7">
               nextjs developer portfolio starter kit
             </p>
@@ -25,7 +20,7 @@ export default function Home() {
           <Link
             target="_blank"
             className="flex flex-col w-full"
-            href="https://www.styleui.dev/"
+            href="https://hamburger-ui-rosy.vercel.app/"
           >
             <p className=" text-sm hover:underline leading-7">
               hamburgerui (coming soon)
@@ -34,11 +29,7 @@ export default function Home() {
               setup landing pages &amp; dashboards in just a few seconds.
             </p>
           </Link>
-          <Link
-            target="_blank"
-            className="flex flex-col w-full"
-            href="https://www.styleui.dev/"
-          >
+          <Link target="_blank" className="flex flex-col w-full" href="#">
             <p className=" text-sm hover:underline leading-7">
               nextjs + geist design system starterkit (coming soon)
             </p>

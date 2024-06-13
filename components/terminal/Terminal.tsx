@@ -8,25 +8,10 @@ export default function Terminal() {
   const { command, output, handleCommandChange, handleCommandSubmit } =
     useCommandHandler();
 
-  const help = ["github", "toolkit", "blog", "projects", "contact"];
-
   return (
-    <div className="w-full relative z-20 h-44 mx-auto overflow-auto border backdrop-blur-[4px] rounded border-[#181818] no-scrollbar">
+    <div className="w-full relative z-20 h-44 mx-auto overflow-auto border backdrop-blur-[4px] rounded-md border-[#181818] no-scrollbar">
       {" "}
       <Header title="Terminal" helpText="'$help' for assistance" />
-      <div className="inline-flex gap-1 text-white items-center text-xs p-3 opacity-50">
-        {" "}
-        type{" "}
-        {help.map((item, index) => (
-          <span
-            key={index}
-            className="rounded-md bg-gray-800  px-1 border border-gray-600"
-          >
-            {" "}
-            {item}{" "}
-          </span>
-        ))}{" "}
-      </div>
       <div className="mt-4">
         {/* Output area */}
         {output.map((item, index) => (

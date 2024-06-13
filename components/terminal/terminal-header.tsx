@@ -4,11 +4,12 @@ interface HeaderProps {
   title: string;
   helpText: string;
 }
+const help = ["github", "blog", "clear", "me"];
 
 const Header: React.FC<HeaderProps> = ({ title }) => {
   return (
     <>
-      <div className="flex items-center gap-2 px-2 pt-1 border-b border-[#181818]">
+      <div className="flex font-code items-center justify-between gap-2 px-2 p-2 border-b border-[#181818]">
         <span className="flex text-sm text-white dark:text-gray-400 gap-2 flex-row space-x-2  w-fit">
           <svg
             data-testid="geist-icon"
@@ -26,6 +27,19 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
           </svg>{" "}
           {title}
         </span>
+        <div className="inline-flex gap-1 text-white items-center text-xs  opacity-50">
+          {" "}
+          type{" "}
+          {help.map((item, index) => (
+            <span
+              key={index}
+              className="rounded-md bg-[#0A0A0A]  px-1 py-0.5 border border-gray-600"
+            >
+              {" "}
+              {item}{" "}
+            </span>
+          ))}{" "}
+        </div>
       </div>
     </>
   );

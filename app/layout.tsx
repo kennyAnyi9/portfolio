@@ -8,6 +8,7 @@ import GridPattern from "@/components/ken-ui/pattern";
 import { cn } from "@/lib/utils";
 import Hero from "@/components/nav/hero";
 import Footer from "@/components/nav/footer";
+import Terminal from "@/components/terminal/Terminal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,11 +35,12 @@ export default function RootLayout({
           y={-1}
           strokeDasharray={"4 2"}
           className={cn(
-            "-z-20  [mask-image:radial-gradient(300px_circle_at_center,white,transparent)]"
+            "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]"
           )}
         />
         <Hero />
         {children}
+        <Footer />
       </body>
     </html>
   );
