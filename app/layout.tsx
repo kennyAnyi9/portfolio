@@ -34,7 +34,7 @@ export default function RootLayout({
           y={-1}
           strokeDasharray={"4 2"}
           className={cn(
-            "-z-20 opacity-25 lg:opacity-100 [mask-image:radial-gradient(300px_circle_at_center,white,transparent)]"
+            "-z-20  [mask-image:radial-gradient(300px_circle_at_center,white,transparent)]"
           )}
         />
         <Hero />
