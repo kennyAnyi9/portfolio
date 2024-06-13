@@ -6,6 +6,8 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import GridPattern from "@/components/ken-ui/pattern";
 import { cn } from "@/lib/utils";
+import Hero from "@/components/nav/hero";
+import Footer from "@/components/nav/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} font-primary`}
+        className={`${GeistSans.variable} ${GeistMono.variable} font-primary max-w-xl space-y-5 mt-[3rem] mx-auto`}
       >
         {" "}
         <GridPattern
@@ -35,6 +37,7 @@ export default function RootLayout({
             "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]"
           )}
         />
+        <Hero />
         {children}
       </body>
     </html>
