@@ -23,7 +23,7 @@ export default function Icon() {
           color: "white",
         }}
       >
-        V
+        K
       </div>
     ),
     {
