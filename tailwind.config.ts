@@ -8,10 +8,22 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+      },
+      keyframes: {
+        "border-beam": {
+          "100%": {
+            "offset-distance": "100%",
+          },
+        },
+      },
       fontFamily: {
         primary: ["var(--font-geist-sans)"],
         code: ["var(--font-geist-mono)"],
+        inter: "var(--font-inter)",
       },
+
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

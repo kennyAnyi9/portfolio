@@ -34,8 +34,8 @@ export default function useCommandHandler() {
         setOutput([]);
         return;
 
-      case "me":
-        router.push("/");
+      case "projects":
+        router.push("/projects");
         setCommand("");
         setOutput([]);
         return;

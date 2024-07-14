@@ -17,7 +17,7 @@ const Blog = () => {
         <h1 className="text-center text-5xl font-bold">
           Bloggin' for Brainiacs
         </h1>
-        <p className="text-center">
+        <p className="mx-auto text-center max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
           Exploring software development and the latest breakthroughs in
           neuroscience
         </p>
