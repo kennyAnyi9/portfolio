@@ -1,4 +1,5 @@
 import React from "react";
+import { Badge } from "../ken-ui/soon";
 
 interface HeaderProps {
   title: string;
@@ -6,10 +7,10 @@ interface HeaderProps {
 }
 const help = ["github", "blog", "clear", "projects"];
 
-const Header: React.FC<HeaderProps> = ({ title }) => {
+const Header: React.FC<HeaderProps> = ({ helpText }) => {
   return (
     <>
-      <div className="flex font-code items-center justify-between gap-2 px-2 p-2 border-b border-[#181818]">
+      <div className="flex font-code items-center justify-between gap-2 px-2 p-2 border-b border-[#323232]">
         <span className="flex text-sm text-white dark:text-gray-400 gap-2 flex-row space-x-2  w-fit">
           <svg
             data-testid="geist-icon"
@@ -25,19 +26,20 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
               fill="currentColor"
             ></path>
           </svg>{" "}
-          {title}
+          <span className="hidden md:block">Terminal</span>
         </span>
         <div className="inline-flex gap-1 text-white items-center text-xs  opacity-50">
           {" "}
           type{" "}
           {help.map((item, index) => (
-            <span
+            <Badge
               key={index}
-              className="rounded-md bg-[#0A0A0A]  px-1 py-0.5 border border-gray-600"
+              variant={"default"}
+              className="w-fit h-fit px-1 bg-[#323232] hover:bg-[#323232] rounded-md my-auto"
             >
               {" "}
               {item}{" "}
-            </span>
+            </Badge>
           ))}{" "}
         </div>
       </div>

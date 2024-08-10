@@ -1,17 +1,20 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import React, { useState, useEffect } from "react";
-import useCommandHandler from "./use-command";
+import React from "react";
 import Header from "./terminal-header";
+import useCommandHandler from "./use-command";
 
 export default function Terminal() {
   const { command, output, handleCommandChange, handleCommandSubmit } =
     useCommandHandler();
 
   return (
-    <div className="w-full relative z-20 h-44 mx-auto overflow-auto border backdrop-blur-[4px] rounded-md border-[#181818] no-scrollbar">
+    <div
+      className="w-full relative z-20 h-44 mx-auto overflow-auto  backdrop-blur-[4px] 
+                    rounded-md border border-[#323232] no-scrollbar"
+    >
       {" "}
-      <Header title="Terminal" helpText="'$help' for assistance" />
+      <Header helpText="'$help' for assistance" />
       <div className="mt-4">
         {/* Output area */}
         {output.map((item, index) => (

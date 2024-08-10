@@ -1,4 +1,5 @@
 import { TextGenerateEffect } from "@/components/ken-ui/generate";
+import { Badge } from "@/components/ken-ui/soon";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
@@ -13,16 +14,25 @@ export default function Home() {
           }
         />
         <h1 className="font-normal mt-[3rem] text-xl">Cooking ☕</h1>
-        <div className="flex flex-col mt-[0.75rem] justify-center items-start w-full  gap-2">
+        <div className="flex flex-col mt-[0.75rem] justify-center items-start w-full  gap-5">
           <Link
             target="_blank"
             className="flex flex-col w-full"
             href="https://cheatpedia.xyz/"
           >
-            <p className="inline-flex gap-1 text-base hover:underline leading-7 group">
-              cheatpedia.xyz(beta){" "}
+            <div className="flex gap-1 flex-row ">
+              <p className="text-base hover:underline leading-7 group">
+                Cheatpedia
+              </p>
+              <Badge
+                variant={"default"}
+                className="w-fit h-fit px-1 bg-[#5C3B23] text-[#D87620] hover:bg-[#5C3B23] rounded-md my-auto"
+              >
+                beta
+              </Badge>
               <ArrowUpRight className="size-5 mb-1.5 opacity-50 my-auto" />
-            </p>{" "}
+            </div>
+
             <p className="text-sm text-gray-400">
               Cheatpedia keeps programmers on top of their game by providing
               them with cheatsheets in a user-friendly and organized format.
@@ -34,10 +44,18 @@ export default function Home() {
             className="flex flex-col w-full"
             href="https://hamburgersui.vercel.app/"
           >
-            <p className="inline-flex gap-1 text-base hover:underline leading-7 group">
-              hamburgerui(soon){" "}
+            <div className="flex gap-1 flex-row ">
+              <p className="text-base hover:underline leading-7 group">
+                Hamburgerui
+              </p>
+              <Badge
+                variant={"default"}
+                className="w-fit h-fit px-1 bg-[#2A3D50] text-[#2381DE] hover:bg-[#2A3D50] rounded-md my-auto"
+              >
+                in progress
+              </Badge>
               <ArrowUpRight className="size-5 mb-1.5 opacity-50 my-auto" />
-            </p>
+            </div>
             <p className="text-sm text-gray-400">
               Save valuable development time by utilizing our pre-built mobile
               menus. Focus on what matters most - building a great app!
@@ -49,10 +67,18 @@ export default function Home() {
             className="flex flex-col w-full"
             href="https://ishortn.ink/"
           >
-            <p className="inline-flex gap-1 text-base hover:underline leading-7 group">
-              ishortn.ink{" "}
+            <div className="flex gap-1 flex-row ">
+              <p className="text-base hover:underline leading-7 group">
+                Ishortn
+              </p>
+              <Badge
+                variant={"default"}
+                className="w-fit h-fit px-1 bg-[#2B593F] text-[#2D9964] hover:bg-[#2B593F] rounded-md my-auto"
+              >
+                open source
+              </Badge>
               <ArrowUpRight className="size-5 mb-1.5 opacity-50 my-auto" />
-            </p>
+            </div>
             <p className="text-sm text-gray-400">
               Active contributor to Ishortn. A dynamic links and url shortener
               and QR code generator. Built as a result of firebase shutting down
@@ -60,12 +86,34 @@ export default function Home() {
               expensive. Now have 30+ users and over 200 daily uses.
             </p>
           </Link>
+          <Link
+            target="_blank"
+            className="flex flex-col w-full"
+            href="https://notfound.kennyanyi.me/"
+          >
+            <div className="flex gap-1 flex-row ">
+              <p className="text-base hover:underline leading-7 group">
+                Notfound
+              </p>
+              <Badge
+                variant={"default"}
+                className="w-fit h-fit px-1 bg-[#5C3B23] text-[#D87620] hover:bg-[#5C3B23] rounded-md my-auto"
+              >
+                beta
+              </Badge>
+              <ArrowUpRight className="size-5 mb-1.5 opacity-50 my-auto" />
+            </div>
+
+            <p className="text-sm text-gray-400">
+              A collection of 404 pages for your React/Next.js apps
+            </p>
+          </Link>
         </div>
       </div>
       {/* experience */}
       <div className="flex flex-col mt-[3rem] w-full">
         <h1 className="font-normal text-xl">Experience 🧠</h1>
-        <div className="flex flex-col justify-center items-start w-full mt-[0.75rem] gap-2">
+        <div className="flex flex-col justify-center items-start w-full mt-[0.75rem] gap-5">
           <div className="flex flex-col w-full">
             <div className="flex justify-between items-center w-full">
               <p className="inline-flex gap-1 text-base hover:underline leading-7 group">
@@ -85,16 +133,47 @@ export default function Home() {
 
       <div className="flex flex-col mt-[3rem] w-full">
         <h1 className="font-normal  text-xl">Freelance 💻</h1>
-        <div className="flex flex-col mt-[0.75rem] justify-center items-start w-full  gap-2">
+        <div className="flex flex-col mt-[0.75rem] justify-center items-start w-full  gap-5">
+          <Link
+            target="_blank"
+            className="flex flex-col w-full"
+            href="https://scrapely.vercel.app/"
+          >
+            <div className="flex gap-1 flex-row ">
+              <p className="text-base hover:underline leading-7 group">
+                Scrapely
+              </p>
+              <Badge
+                variant={"default"}
+                className="w-fit h-fit px-1 bg-[#2A3D50] text-[#2381DE] hover:bg-[#2A3D50] rounded-md my-auto"
+              >
+                in progress
+              </Badge>
+              <ArrowUpRight className="size-5 mb-1.5 opacity-50 my-auto" />
+            </div>
+
+            <p className="text-sm text-gray-400">
+              High level scraping tool for scraping prices from ecommerce
+              websites
+            </p>
+          </Link>
           <Link
             target="_blank"
             className="flex flex-col w-full"
             href="https://www.wislawedufund.org/"
           >
-            <p className="inline-flex gap-1 text-base hover:underline leading-7 group">
-              wislawedufund.org{" "}
+            <div className="flex gap-1 flex-row ">
+              <p className="text-base hover:underline leading-7 group">
+                Wislaw
+              </p>
+              <Badge
+                variant={"default"}
+                className="w-fit h-fit px-1 bg-[#2B593F] text-[#2D9964] hover:bg-[#2B593F] rounded-md my-auto"
+              >
+                production
+              </Badge>
               <ArrowUpRight className="size-5 mb-1.5 opacity-50 my-auto" />
-            </p>
+            </div>
             <p className="text-sm text-gray-400">
               Built an organisational website for WISLAW Education and Support
               Fund.
@@ -105,10 +184,18 @@ export default function Home() {
             className="flex flex-col w-full"
             href="https://www.imhogen.com/"
           >
-            <p className="inline-flex gap-1 text-base hover:underline leading-7 group">
-              imhogen.com{" "}
+            <div className="flex gap-1 flex-row ">
+              <p className="text-base hover:underline leading-7 group">
+                Imhogen
+              </p>
+              <Badge
+                variant={"default"}
+                className="w-fit h-fit px-1 bg-[#5C3B23] text-[#D87620] hover:bg-[#5C3B23] rounded-md my-auto"
+              >
+                production
+              </Badge>
               <ArrowUpRight className="size-5 mb-1.5 opacity-50 my-auto" />
-            </p>
+            </div>
             <p className="text-sm text-gray-400">
               Built the IHMO Engineering design company website
             </p>
