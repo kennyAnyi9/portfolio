@@ -14,7 +14,7 @@ export default function Terminal() {
                     rounded-md border border-[#323232] no-scrollbar"
     >
       {" "}
-      <Header helpText="'$help' for assistance" />
+      <Header helpText="'$help' for assistance" title="" />
       <div className="mt-4">
         {/* Output area */}
         {output.map((item, index) => (
