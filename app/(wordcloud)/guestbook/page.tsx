@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import BackButton from "@/components/ken-ui/back-button";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -58,6 +59,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col text-white">
+      <BackButton />
       <h1 className="text-2xl font-normal mb-8">Feature in my Word Cloud</h1>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
