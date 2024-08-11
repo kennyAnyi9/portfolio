@@ -29,6 +29,7 @@ export default function Home() {
   const [words, setWords] = useState<WordData[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -38,10 +39,14 @@ export default function Home() {
   const fetchWords = async () => {
     try {
       const response = await fetch("/api/words");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       setWords(data);
     } catch (error) {
       console.error("Error fetching words:", error);
+      setError("Failed to fetch words. Please try again later.");
     }
   };
 
@@ -54,13 +59,14 @@ export default function Home() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to add word");
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       setIsOpen(false);
       fetchWords();
     } catch (error) {
       console.error("Error adding word:", error);
+      setError("Failed to add word. Please try again later.");
     }
   };
 
@@ -68,6 +74,8 @@ export default function Home() {
     <main className="flex min-h-screen flex-col text-white">
       <BackButton />
       <h1 className="text-2xl font-normal mb-8">Feature in my Word Cloud</h1>
+
+      {error && <p className="text-red-500 mb-4">{error}</p>}
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
@@ -87,6 +95,10 @@ export default function Home() {
         <div className="mt-8 w-full">
           <WordCloudComponent words={words} />
         </div>
+      )}
+
+      {isMounted && words.length === 0 && !error && (
+        <p>No words available. Be the first to add one!</p>
       )}
     </main>
   );
