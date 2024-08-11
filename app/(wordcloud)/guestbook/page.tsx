@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
 import BackButton from "@/components/ken-ui/back-button";
@@ -11,8 +12,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import WordCloudComponent from "../_components/word-cloud";
 import WordForm from "../_components/word-form";
+
+const WordCloudComponent = dynamic(() => import("../_components/word-cloud"), {
+  ssr: false,
+  loading: () => <p>Loading Word Cloud...</p>,
+});
 
 interface WordData {
   text: string;
@@ -23,8 +28,10 @@ interface WordData {
 export default function Home() {
   const [words, setWords] = useState<WordData[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     fetchWords();
   }, []);
 
@@ -76,9 +83,11 @@ export default function Home() {
         </DialogContent>
       </Dialog>
 
-      <div className="mt-8 w-full">
-        <WordCloudComponent words={words} />
-      </div>
+      {isMounted && words.length > 0 && (
+        <div className="mt-8 w-full">
+          <WordCloudComponent words={words} />
+        </div>
+      )}
     </main>
   );
 }
