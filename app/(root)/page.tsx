@@ -111,7 +111,7 @@ export default function Home() {
           <Link
             target="_blank"
             className="flex flex-col w-full"
-            href="https://notfound.kennyanyi.me/"
+            href="https://typeicon.kennyanyi.me/"
           >
             <div className="flex gap-1 flex-row ">
               <p className="text-base hover:underline leading-7 group">
@@ -119,9 +119,9 @@ export default function Home() {
               </p>
               <Badge
                 variant={"default"}
-                className="w-fit h-fit px-1 bg-[#5C3B23] text-[#D87620] hover:bg-[#5C3B23] rounded-md my-auto"
+                className="w-fit h-fit px-1  bg-[#2B593F] text-[#2D9964] hover:bg-[#2B593F] rounded-md my-auto"
               >
-                beta
+                in progress
               </Badge>
               <ArrowUpRight className="size-5 mb-1.5 opacity-50 my-auto" />
             </div>
