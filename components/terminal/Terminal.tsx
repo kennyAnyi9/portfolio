@@ -20,8 +20,10 @@ export default function Terminal() {
         {output.map((item, index) => (
           <div className="pl-3" key={index}>
             <div className="flex items-center gap-1 ">
-              <p className="text-green-500 text-xs">{"$"}</p>
-              <p key={index} className="text-green-500 text-xs">
+              <p className="text-green-400 text-xs font-mono">
+                {"(base)kennyAnyi9/portfolio$"}
+              </p>
+              <p key={index} className="text-green-500 text-xs font-mono">
                 {item.command}
               </p>
             </div>
@@ -43,7 +45,7 @@ export default function Terminal() {
                   | undefined,
                 index: React.Key | null | undefined
               ) => (
-                <p key={index} className="text-xs whitespace-pre">
+                <p key={index} className="text-xs whitespace-pre font-mono">
                   {res}
                 </p>
               )
@@ -52,15 +54,15 @@ export default function Terminal() {
         ))}
         {/* Input area */}
         <form onSubmit={handleCommandSubmit} className="flex gap-2 ">
-          <p className=" text-sm text-gray-600 dark:text-gray-400 pl-3 ">
-            {"$"}
+          <p className=" text-xs text-green-400 pl-3 font-mono ">
+            {"(base)kennyAnyi9/portfolio$"}
           </p>
           <input
             type="text"
-            className="w-full text-opacity-25 text-sm text-gray-600 dark:text-gray-400 bg-transparent border-none focus:outline-none caret-green-400 font-mono"
+            className="w-full text-xs  bg-transparent border-none focus:outline-none caret-green-400 font-mono"
             value={command}
             autoFocus
-            placeholder="start typing here"
+            placeholder="click to start typing"
             onChange={handleCommandChange}
           />
         </form>

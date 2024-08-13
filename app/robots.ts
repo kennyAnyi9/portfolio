@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://vle.vercel.app/sitemap.xml",
+    sitemap: "https://kennyanyi.me/sitemap.xml",
   };
 }

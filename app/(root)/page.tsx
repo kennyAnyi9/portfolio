@@ -108,6 +108,28 @@ export default function Home() {
               A collection of 404 pages for your React/Next.js apps
             </p>
           </Link>
+          <Link
+            target="_blank"
+            className="flex flex-col w-full"
+            href="https://notfound.kennyanyi.me/"
+          >
+            <div className="flex gap-1 flex-row ">
+              <p className="text-base hover:underline leading-7 group">
+                Type Icon
+              </p>
+              <Badge
+                variant={"default"}
+                className="w-fit h-fit px-1 bg-[#5C3B23] text-[#D87620] hover:bg-[#5C3B23] rounded-md my-auto"
+              >
+                beta
+              </Badge>
+              <ArrowUpRight className="size-5 mb-1.5 opacity-50 my-auto" />
+            </div>
+
+            <p className="text-sm text-gray-400">
+              Select icons, get instant SVG TypeScript code.
+            </p>
+          </Link>
         </div>
       </div>
       {/* experience */}

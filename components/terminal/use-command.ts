@@ -62,7 +62,9 @@ export default function useCommandHandler() {
 
       default:
         command.trim().toLowerCase();
-        superCommandHandler(["Invalid command. Type 'clear' or try again"]);
+        superCommandHandler([
+          `Command ${`"${command}"`} not found, try again.`,
+        ]);
         break;
     }
   };
