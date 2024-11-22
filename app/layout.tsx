@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Gabarito } from "next/font/google";
+import { Inter } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import localFont from "next/font/local";
 
@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import Hero from "@/components/nav/hero";
 
 import { Footer } from "@/components/nav/footer";
+import { ThemeProvider } from "@/components/theme-provider";
 
 
 const mono = localFont({
@@ -22,7 +23,7 @@ const mono = localFont({
     weight: "100 900",
   });
 
-const inter = Gabarito({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-inter",
@@ -43,7 +44,13 @@ export default function RootLayout({
       <body
         className={`${inter.className} ${monoLight.variable} px-5 lg:px-0 space-y-5 mt-[3rem] mx-auto`}
       >
-        {" "}
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            forcedTheme="dark"
+            disableTransitionOnChange
+          >
         <GridPattern
           width={30}
           height={30}
@@ -57,6 +64,7 @@ export default function RootLayout({
         <Hero />
         {children}
         <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

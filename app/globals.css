@@ -32,7 +32,7 @@
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    --background: #191919;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -64,6 +64,6 @@
     @apply border-border;
   }
   body {
-    @apply bg-[#191919] text-foreground text-white;
+    @apply bg-background text-foreground text-white;
   }
 }
