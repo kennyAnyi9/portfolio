@@ -10,6 +10,8 @@ import Hero from "@/components/nav/hero";
 
 import { Footer } from "@/components/nav/footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import Navigation from "@/components/terminal/navigation";
+
 
 
 const mono = localFont({
@@ -42,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${monoLight.variable} px-5 lg:px-0 space-y-5 mt-[3rem] mx-auto`}
+        className={`${inter.className} ${monoLight.variable} px-5 lg:px-0 space-y-5 mt-[3rem] max-w-2xl mx-auto bg-[#1F2124]`}
       >
         <ThemeProvider
             attribute="class"
@@ -58,10 +60,11 @@ export default function RootLayout({
           y={-1}
           strokeDasharray={"4 2"}
           className={cn(
-            "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)] opacity-50 -z-20"
+            "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)] opacity-10 -z-20"
           )}
         />
         <Hero />
+        <Navigation />
         {children}
         <Footer />
         </ThemeProvider>

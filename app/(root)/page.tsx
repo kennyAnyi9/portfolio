@@ -104,7 +104,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center gap-5 mx-auto">
       <div className="flex flex-col mt-[3rem] w-full">
-        <div className="flex flex-wrap gap-2">
+        {/* <div className="flex flex-wrap gap-2">
           {toolkit.map((tool, index) => (
             <BlurFade delay={BLUR_FADE_DELAY}>
               <Badge
@@ -116,7 +116,7 @@ export default function Home() {
               </Badge>
             </BlurFade>
           ))}
-        </div>
+        </div> */}
         <BlurFade delay={BLUR_FADE_DELAY}>
           <h1 className="font-normal mt-[3rem] text-xl">About</h1>
           <TextGenerateEffect
