@@ -7,6 +7,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+
 export default function PostCard(post: Post) {
   // Function to calculate read time (assuming post.body.raw exists)
   const calculateReadTime = (content: string) => {

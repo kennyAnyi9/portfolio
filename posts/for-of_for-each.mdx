@@ -5,5 +5,24 @@ description: A comparison of for..of, forEach, and for..in in JavaScript and Typ
 author: kennyAnyi9
 ---
 
+### Introduction
 
- soon
+JavaScript offers several ways to iterate over data structures, and choosing the right one can significantly impact your code's readability and performance. In this post, we'll dive deep into three common iteration methods: `for...of`, `forEach`, and `for...in`. While they might seem similar at first glance, each has its unique characteristics and ideal use cases.
+
+Let's start with a simple example that highlights their differences:
+
+```javascript
+const colors = ['red', 'blue', 'green'];
+
+// Using for...of
+for (const color of colors) {
+    console.log(color);
+}
+
+// Using forEach
+colors.forEach(color => console.log(color));
+
+// Using for...in (not recommended for arrays!)
+for (const index in colors) {
+    console.log(colors[index]);
+}
