@@ -40,9 +40,7 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Only handle shortcuts if not typing in input
       if (!isTyping) {
-        // Handle arrow key navigation
         if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
           e.preventDefault();
           setSelectedIndex((prev) => {
@@ -53,17 +51,14 @@ const Navigation = () => {
             }
           });
         }
-        // Handle Enter key for selected command
         else if (e.key === "Enter" && selectedIndex !== -1) {
           handleNavigation(commands[selectedIndex].path);
         }
-        // Handle "/" to start typing
         else if (e.key === "/") {
           e.preventDefault();
           setIsTyping(true);
           inputRef.current?.focus();
         }
-        // Handle shortcuts (h, b, p, s)
         else {
           const foundCommand = commands.find(
             cmd => cmd.shortcut.toLowerCase() === e.key.toLowerCase()
@@ -100,9 +95,9 @@ const Navigation = () => {
   }, []);
 
   return (
-    <div className="relative flex font-mono items-center justify-between gap-2 px-2 p-2 border-b border-white/10">
-      <span className="flex text-sm text-white dark:text-gray-400 gap-2 flex-row space-x-2 w-fit">
-        <Terminal size={16} className="my-auto" />
+    <div className="relative flex font-mono items-center justify-between gap-2 px-2 p-2 border-b">
+      <span className="hidden lg:flex text-sm gap-2 flex-row space-x-2 w-fit">
+        <Terminal size={16} className="my-auto text-foreground" />
         {isTyping ? (
           <form onSubmit={handleSubmit} className="flex items-center">
             <input
@@ -111,33 +106,33 @@ const Navigation = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onBlur={handleBlur}
-              className="bg-transparent border-none outline-none text-white text-sm w-32"
+              className="bg-transparent border-none outline-none text-foreground text-sm w-32"
               placeholder="Type a command..."
               autoFocus
             />
           </form>
         ) : (
-          <span className="opacity-50 text-xs">Press "/" to type a command</span>
+          <span className="text-muted-foreground text-xs">Press "/" to type a command</span>
         )}
       </span>
-      <div className="inline-flex gap-1 text-white items-center text-xs opacity-50">
+      <div className="inline-flex gap-1 items-center text-xs">
         {commands.map((item, index) => (
           <Badge
             key={index}
             variant="outline"
-            className={`inline-flex gap-2 cursor-pointer transition-colors rounded-sm px-1 opacity-50 text-xs
+            className={`inline-flex gap-2 border border-muted cursor-pointer font-extralight text-muted-foreground transition-colors rounded-sm px-1 text-xs
               ${index === selectedIndex
-                ? "bg-white/20 hover:bg-white/20"
-                : "bg-zinc-800 hover:bg-zinc-700"
+                ? "bg-accent hover:bg-accent"
+                : "bg-background hover:bg-accent/50"
               }`}
             onClick={() => handleNavigation(item.path)}
           >
-            {item.name} <span className="rounded-sm bg-white text-black opacity-50 text-xs px-2">{item.shortcut}</span>
+            {item.name} <span className="hidden lg:block rounded-sm bg-muted text-muted-foreground px-2">{item.shortcut}</span>
           </Badge>
         ))}
       </div>
       {showTooltip && (
-        <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 bg-black/80 text-white text-xs py-1 px-2 rounded">
+        <div className="hidden lg:absolute -bottom-12 left-1/2 transform -translate-x-1/2 bg-popover text-popover-foreground text-xs py-1 px-2 rounded">
           Press first letter to quick navigate (h: home, b: blog, p: projects, s: store)
         </div>
       )}

@@ -1,9 +1,10 @@
-import { allPosts } from "contentlayer/generated"
-import { notFound } from "next/navigation"
-import { useMDXComponent } from "next-contentlayer/hooks"
-import { format } from "date-fns"
 import { Badge } from "@/components/ui/badge"
-import { readTime } from "../../_components/blog-post-card"
+import { allPosts } from "contentlayer/generated"
+import { format } from "date-fns"
+import { useMDXComponent } from "next-contentlayer/hooks"
+import { notFound } from "next/navigation"
+import { calculateReadTime } from "../../_components/blog-post-card"
+import { BookOpenCheck } from "lucide-react"
 
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post.slug }))
@@ -21,17 +22,17 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
   const MDXContent = useMDXComponent(post.body.code)
 
   return (
-    <article className="mx-auto py-8 ">
-      <div className="mb-8 text-center">
+    <article className="w-full mt-[3rem]">
+      <div className="mb-8">
         <Badge  className="bg-zinc-700 mb-2  opacity-50 transition-colors hover:bg-zinc-600">
-        <time dateTime={post.date} className="text-xs text-white my-auto">
-          {format(new Date(post.date), 'MMMM d, yyyy')}.{readTime}
+        <time dateTime={post.date} className="text-xs font-extralight text-white my-auto inline-flex gap-2">
+         {format(new Date(post.date), 'MMMM d, yyyy')} <span className=""> . </span>{calculateReadTime(post.body.raw)} min read <BookOpenCheck size={"12"} className="my-auto" />
         </time>
         </Badge>
-        <h1 className="text-3xl font-bold ">{post.title}</h1>
+        <h1 className="text-3xl mt-2 font-bold">{post.title}</h1>
 
       </div>
-      <div className="prose prose-invert mx-auto">
+      <div className="prose dark:prose-invert  mt-20">
         <MDXContent />
       </div>
     </article>

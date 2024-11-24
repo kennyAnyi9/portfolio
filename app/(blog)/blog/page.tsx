@@ -1,5 +1,5 @@
 import { allPosts } from "contentlayer/generated";
-import { ArrowLeft, Rss} from "lucide-react";
+import { ArrowLeft, Book, Rss} from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { formatDate, getBlogPosts } from "../utils";
@@ -11,11 +11,11 @@ const Blog = () => {
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
   return (
-    <div className="flex flex-col min-h-screen gap-10">
-     
+    <div className="flex flex-col min-h-screen gap-10 mt-[3rem]">
+
       <div className="flex flex-col gap-8">
         <div className="flex justify-between flex-row">
-        <h1 className="text-2xl inline-flex gap-2">Blog</h1>
+        <h1 className="text-2xl inline-flex gap-2 font-bold my-auto"><Book className="my-auto" size={"24"} />Blog</h1>
         <Button variant={"outline"} size={"sm"}><Rss size={16} /></Button>
         </div>
 

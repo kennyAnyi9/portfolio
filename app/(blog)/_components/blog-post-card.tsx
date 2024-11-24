@@ -7,14 +7,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-
+ // Function to calculate read time (assuming post.body.raw exists)
+export const calculateReadTime = (content: string) => {
+  const wordsPerMinute = 200;
+  const wordCount = content.split(/\s+/).length;
+  return Math.ceil(wordCount / wordsPerMinute);
+};
 export default function PostCard(post: Post) {
-  // Function to calculate read time (assuming post.body.raw exists)
-  const calculateReadTime = (content: string) => {
-    const wordsPerMinute = 200;
-    const wordCount = content.split(/\s+/).length;
-    return Math.ceil(wordCount / wordsPerMinute);
-  };
+
 
   return (
     <Table>

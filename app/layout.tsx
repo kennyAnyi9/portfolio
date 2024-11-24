@@ -11,6 +11,7 @@ import Hero from "@/components/nav/hero";
 import { Footer } from "@/components/nav/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navigation from "@/components/terminal/navigation";
+import { AppThemeSwitcher } from "@/components/switch-mode";
 
 
 
@@ -44,15 +45,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${monoLight.variable} px-5 lg:px-0 space-y-5 mt-[3rem] max-w-2xl mx-auto bg-[#1F2124]`}
+        className={`${inter.className} ${monoLight.variable} px-5 lg:px-0 space-y-5 mt-[3rem] max-w-2xl mx-auto`}
       >
         <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem
-            forcedTheme="dark"
+            //forcedTheme="light"
             disableTransitionOnChange
           >
+            
         <GridPattern
           width={30}
           height={30}
@@ -64,6 +66,7 @@ export default function RootLayout({
           )}
         />
         <Hero />
+        <AppThemeSwitcher/>
         <Navigation />
         {children}
         <Footer />

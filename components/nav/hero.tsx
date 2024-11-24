@@ -9,13 +9,13 @@ const Hero = () => {
       <div className="flex flex-col justify-center items-start w-full">
         <BlurFade delay={BLUR_FADE_DELAY}>
           <h1 className="font-normal leading-7 text-xl">Kennedy Anyidoho</h1>
-          <p className="text-xs font-light text-gray-300">
+          <p className="text-xs font-light">
             Software Engineer & Neuroscience enthusiast
           </p>
         </BlurFade>
         <div className="flex flex-col gap-1 mt-3">
           <BlurFade>
-            <p className="text-xs font-normal text-gray-400">
+            <p className="text-xs font-normal">
               Reach me at{" "}
               <Link
                 href="https://x.com/kennyAnyi9"
