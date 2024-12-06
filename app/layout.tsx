@@ -54,7 +54,7 @@ export default function RootLayout({
             //forcedTheme="light"
             disableTransitionOnChange
           >
-            
+
         <GridPattern
           width={30}
           height={30}

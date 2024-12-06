@@ -1,8 +1,6 @@
 ---
 title: for..of vs forEach vs for..in in JavaScript
 date: 2021-09-01
-description: A comparison of for...of, forEach, and for...in in JavaScript and TypeScript to help you choose the right one for your use case. Leare about the differences in performance, syntax, and use cases.
-author: kennyAnyi9
 ---
 
 #### Introduction
@@ -11,7 +9,7 @@ JavaScript offers several ways to iterate over data structures, and choosing the
 
 Let's start with a simple examples that highlight their differences:
 
-```javascript
+```bash
 // Using for...in (not recommended for arrays!)
 const colors = ['red', 'blue', 'green'];
 const keys = [];
@@ -22,7 +20,7 @@ keys;
 result: ['0', '1', '2']
 ```
 
-```javascript
+```bash
 // Using for...of
 const colors = ['red', 'blue', 'green'];
 const elements = [];
@@ -34,7 +32,7 @@ result:  ['red', 'blue', 'green']
 ```
 
 
-```javascript
+```bash
 // Using forEach
 const colors = ['red', 'blue', 'green'];
 const elements = [];
@@ -55,7 +53,7 @@ At its core, iteration in JavaScript is about accessing elements in a sequence, 
 
 JavaScript's iteration capabilities have evolved significantly over time:
 
-```javascript
+```bash
 // Traditional for loop (Old School)
 for (let i = 0; i < array.length; i++) {
     // Used since the early days of JavaScript
@@ -88,7 +86,7 @@ Understanding the differences between various loops is important because it help
 
 The `for...in` loop is designed to iterate over object keys, not array elements. While it can be used with arrays, it's not recommended due to its behavior with inherited properties and non-numeric keys.
 
-```javascript
+```bash
 // using for...in with an object
 const obj = {
   //key: value
@@ -105,7 +103,7 @@ Result: ['firstname', 'surname']
 
 Actually arrays a some special type of objects in javascript. They have numeric keys and a length property.
 
-```javascript
+```bash
 const colors = ['red', 'blue', 'green'];
 Object.keys(colors);
 result: ['0', '1', '2']
@@ -123,7 +121,7 @@ now if we use the `for...in` loop to iterate over the array, we will still get t
   ```
 Javascript has some funny behaviour when it comes to the use of `for...in` loop with arrays. let us use an empty array to explain this behaviour.
 
-```javascript
+```bash
 const emptyArray = [];
 emptyArray['name'] = 'Kennedy';
 const resultArray = [];

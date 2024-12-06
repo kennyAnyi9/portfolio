@@ -12,7 +12,7 @@ interface CommandConfig {
 
 const commands: CommandConfig[] = [
   { name: "home", shortcut: "h", path: "/" },
-  { name: "blog", shortcut: "b", path: "/blog" },
+  { name: "blog", shortcut: "b", path: "/posts" },
   { name: "projects", shortcut: "p", path: "/projects" },
   { name: "store", shortcut: "s", path: "/store" }
 ];
