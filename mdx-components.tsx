@@ -5,7 +5,7 @@ import { ClassAttributes, HTMLAttributes } from "react";
 
 Code.theme = {
   dark: "github-dark",
-  light: "github-light",
+  light: "github-dark",
   lightSelector: "html.light",
 };
 
