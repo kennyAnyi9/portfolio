@@ -5,7 +5,7 @@ import BlurFade from "../ken-ui/blur-fade";
 
 const Hero = () => {
   return (
-    <div className="flex max-w-2xl mx-auto relative flex-row h-fit  pb-5 items-center justify-center mt-5 backdrop-blur-[2px]">
+    <div className="flex w-full mx-auto relative flex-row h-fit  pb-5 items-center justify-center mt-5 backdrop-blur-[2px]">
       <div className="flex flex-col justify-center items-start w-full">
         <BlurFade delay={BLUR_FADE_DELAY}>
           <h1 className="font-normal leading-7 text-xl">Kennedy Anyidoho</h1>

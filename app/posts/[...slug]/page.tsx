@@ -50,8 +50,8 @@ export default async function PostPage({ params }: PostProps) {
   }
 
   return (
-    <div>
-        <article className="py-6 prose dark:prose-invert">
+    <div className="min-h-screen flex flex-col">
+        <article className="py-6 prose dark:prose-invert w-full max-w-full">
           <div className="mb-10">
           <div className="flex gap-x-2 w-fit px-2 py-1 mb-4 rounded-full bg-accent">
               <p className="text-xs my-auto text-grey-700 dark:text-grey-200">

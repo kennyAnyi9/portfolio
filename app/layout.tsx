@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { GeistMono } from "geist/font/mono";
 import localFont from "next/font/local";
 
 import "./globals.css";
@@ -45,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${monoLight.variable} px-5 lg:px-0 space-y-5 mt-[3rem] max-w-2xl mx-auto`}
+        className={`${inter.className} ${monoLight.variable}`}
       >
         <ThemeProvider
             attribute="class"
@@ -54,7 +53,7 @@ export default function RootLayout({
             //forcedTheme="light"
             disableTransitionOnChange
           >
-
+ <main className=" px-5 lg:px-0 space-y-5 mt-[3rem] max-w-2xl mx-auto">
         <GridPattern
           width={30}
           height={30}
@@ -70,6 +69,7 @@ export default function RootLayout({
         <Navigation />
         {children}
         <Footer />
+        </main>
         </ThemeProvider>
       </body>
     </html>
