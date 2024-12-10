@@ -1,0 +1,280 @@
+---
+title:  Building a Task Tracker CLI in Node.js
+description: Build a CLI app to track your tasks and manage your to-do list.
+date: 2024-07-08
+---
+
+## Introduction
+
+In this tutorial, we'll build a command-line task tracker application using Node.js. We'll go through each step of creating a practical CLI tool that helps manage tasks efficiently.
+
+## Prerequisites
+To be able to understand this tutorial, you need to have a basic understanding of JavaScript and Node.js. You should have Node.js installed on your machine. If you don't have it installed, you can download it from the [official Node.js website](https://nodejs.org/).
+
+We would be building this project in 4 phases for better understanding:
+
+- **Phase 1**: Project Setup.
+- **Phase 2**: Adding tasks to the list.
+- **Phase 3**: Marking tasks as done and deleting tasks.
+- **Phase 4**: Saving the tasks to a file.
+
+To keep things simple, we would explore the details of each phase in the following sections.
+
+## Phase 1: Project Setup
+
+### Project structure
+
+```
+task-cli/
+├── data/               # Directory for our JSON storage
+├── src/                # Directory for our source code
+│   └── commands/       # Directory for command handlers
+├── index.js
+├── package.json
+└── README.md
+```
+
+### Step 1: Create a new Node.js project and run `npm init` command.
+
+```bash
+# Create a directory for your project
+mkdir task-cli
+cd task-cli
+
+# Initialize npm project
+npm init -y
+```
+
+### Step 2: create your main file
+
+```bash
+# Create index.js file
+touch index.js  # On Unix/Mac
+# OR
+type nul > index.js  # On Windows
+```
+
+### Step 3: Add the shebang line to the top of your `index.js` file
+
+We have to make the file executable by adding the shebang line at the top of the `index.js` file.
+
+```index.js
+#!/usr/bin/env node
+/*This line tells Unix-like systems
+"Hey, use Node.js to run this file!" */
+```
+
+### Step 4: Update the `package.json` file
+
+Add the following configuration to the `package.json` file:
+
+```json
+// ...other existing configurations
+{
+  "bin": {
+    "task-cli": "./index.js" //This makes your command available globally when installed
+  }
+}
+```
+This tells npm:
+
+- Create a command called "task-cli"
+- When this command is run, execute the file at "./index.js"
+
+Now we have to make our package available locally for testing by running the following command:
+
+```bash
+npm link
+```
+This creates a symbolic link to your package globally. After running this, you should be able to use the task-cli command from your terminal.
+
+now to test if our CLI is working, run the following command:
+
+- add the following code to your `index.js` file:
+
+```js
+console.log("CLI is working!");
+```
+- Run the following command in your terminal:
+
+```bash
+task-cli
+```
+
+You should see "CLI is working!" in the console, which means our CLI is working as expected.
+
+### Step 5: Capture command-line arguments
+
+To capture command-line arguments will make is possible for the the CLI to understand commands like `task-cli add "Buy groceries"` or `task-cli list`.
+
+We will use the `process.argv` array to capture the command-line arguments. The first two elements of the array are the path to Node.js and the path to the script being run. The rest of the elements are the command-line arguments.
+
+{/* probably have to come back here latter and finish up cause i do not really get what is going on here */}
+
+### Step 6: Create JSON file storage stucture
+
+Create a `data` directory in the root of your project to store the tasks in a JSON file.
+
+Now let us consider the following scenarios:
+
+- When someone first installs and runs the CLI, no `task.json` file exists. We would need to create one which will have
+the following structure:
+
+```json
+{
+  "tasks": []  //empty array to store tasks
+}
+```
+- In implementation we sould need to first check if the file exists, if it does not, we would create it and write the above content to it.
+- If the file exists, we would read from it.
+
+Now let us implement this:
+
+- create a utils folder in the `src` directory and create a file called `storage.js` in it and add the following code:
+
+```storage.js
+const fs = require('fs');
+const path = require('path');
+
+/*
+ * DEFINE PATHS
+ We are telling Node.js where to store our data and tasks.json file
+
+*/
+const DATA_DIR = path.join(__dirname, '../../data')
+const TASKS_FILE = path.join(DATA_DIR, 'tasks.json')
+
+
+/*
+ *INITIALIZE STORAGE SYSTEM
+ *CREATE DATA DIRECTORY AND TASKS.JSON FILE IF THEY DO NOT EXIST
+*/
+const initailizeStrorage = () => {
+    try{
+        //check if dir exist, if not create it
+        if(!fs.existsSync(DATA_DIR)){
+            fs.mkdirSync(DATA_DIR)
+        }
+
+        // check if task.json exists else create it
+        if(!fs.existsSync(TASKS_FILE)){
+                const initialData ={
+                    tasks: []
+                };
+
+              fs.writeFileSync(TASKS_FILE, JSON.stringify(initialData, null,2))
+        }
+
+
+    }catch(error){
+        console.log('Error initializing storage:', error.message);
+        process.exit(1)// exit if we can't initialize storage
+    }
+
+}
+
+/**
+* WRITE FUNCTION TO READ ALL TASKS FROM STORAGE
+* @returns {Array} Aray of tasks
+*/
+
+const readTasks =()=>{
+    try{
+        const data =fs.readFileSync(TASKS_FILE, 'utf8');
+        return JSON.parse(data).tasks;
+    } catch(error){
+        console.error('Error reading tasks:', error.message)
+        return [];
+    }
+}
+
+/**
+ * SAVE TASKS TO STORAGE
+ * @param {Array} tasks Array of tasks to save
+ */
+
+ const saveTasks = (tasks) => {
+    try{
+        const data ={
+            tasks: tasks
+        };
+        fs.writeFileSync(TASKS_FILE, JSON.stringify(data, null, 2));
+    } catch(error){
+        console.error('Error saving tasks, error.message')
+    }
+ }
+
+ //functions to use in other files
+
+ module.exports = {
+    initailizeStrorage,
+    readTasks,
+    saveTasks
+ };
+
+```
+- next let us create these files:
+
+```
+src/commands/
+  ├── add.js
+  ├── list.js
+  ├── update.js
+  └── delete.js
+```
+
+  - Now let us implement the basic command routing in the `index.js` file:
+
+
+
+  ```js
+  #!/usr/bin/env node
+
+// Import our storage utility
+const storage = require('./src/utils/storage');
+
+// Initialize storage when CLI starts
+storage.initializeStorage();
+
+// Get command and arguments
+const [,, command, ...args] = process.argv;
+
+if (!command) {
+    console.log('Please provide a command:');
+    console.log('  add "task description"');
+    console.log('  list');
+    console.log('  update <id> "new description"');
+    console.log('  delete <id>');
+    process.exit(1);
+    }
+```
+
+
+
+
+
+
+
+Phase 1: Project Setup
+
+Setting up the basic CLI structure
+Creating the JSON storage file
+Implementing basic argument parsing
+
+Phase 2: Core Functionality
+
+Task creation
+Task listing
+Task updating
+Task deletion
+
+Phase 3: Status Management
+
+Implementing status changes
+Filtering tasks by status
+
+Phase 4: Error Handling & Validation
+
+Input validation
+Error messages
+Edge cases

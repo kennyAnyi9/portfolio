@@ -1,6 +1,6 @@
 ---
 title: for..of vs forEach vs for..in in JavaScript
-decscription: JavaScript array methods inplay
+description: JavaScript array methods inplay
 date: 2024-11-01
 ---
 
@@ -135,11 +135,6 @@ for (const key in colors) {
 console.log(keys);
 // Result: ['0', '1', '2']
 ```
-In the next section we will explore some edge cases of the `for...in` loop for a better understanding.
-
-
-
-Your explanation is clear and well-structured! I've made some adjustments for clarity, consistency, and grammar. Additionally, I corrected the code blocks and ensured consistent formatting. Here's the revised version:
 
 
 #### Why is it not advisable to use the `for...in` loop with arrays?
@@ -186,7 +181,7 @@ While `for...in` can technically work with arrays, it’s not the most efficient
 Instead, for array iteration, loops like `for...of` or array methods like `forEach()` are much more straightforward. These methods give you direct access to the values without needing to access them via the index, making the code cleaner and easier to understand.
 
 
-### The `for...of` Loop
+## The `for...of` Loop
 
 Fortunately, JavaScript provides another iterator known as the `for...of` loop, which directly returns the **values** in the array, instead of the keys, like in the case of the `for...in` loop.
 
@@ -214,3 +209,107 @@ In this example, the `for...of` loop iterates over the values of the array, skip
 The `for...of` loop is more intuitive and cleaner for iterating over arrays, especially when the goal is to process the **values**. It eliminates the need for additional code to access values via their indexes, and it's more straightforward to read.
 
 If you are working with arrays and only need to process the values, the `for...of` loop is the way to go. It reduces the chance of errors, avoids unnecessary code, and makes your intentions clear. For sparse arrays, this is especially important, as it skips over any gaps automatically.
+
+
+## The `forEach()` array method
+
+The `forEach()` method just like the `for...of` loop gives us the each element in the array as well as the opportunity to
+pass a callback function to it which is called once for each element in the array.
+
+```js
+const someArray = [1, 2, 3];
+sum = 0;
+numbers.forEach(n=>{
+   sum += n;
+})
+
+console.log(sum)
+//result: 6
+```
+Another interesting thing is that just like the `for...in` loop, the `forEach()` loop's callback function gives us an option to get the index (which in the case of arrays is the key) of the element like so:
+
+```js
+const someArray = [1, 2, 3]
+const arrayWithIndexes = [];
+someArray.forEach((element, index) => {
+    arrayWithIndexes.push(`${element} is at index ${index}`);
+});
+
+console.log(arrayWithIndexes);
+// Result: ['1 is at index 0', '2 is at index 1', '3 is at index 2']
+```
+
+The callback function can also be defined outside the loop like so:
+
+```js
+
+const callBack = (element, index) => {
+    arrayWithIndexes.push(`${element} is at index ${index}`);
+}
+
+const someArray = [1, 2, 3]
+const arrayWithIndexes = [];
+someArray.forEach(callBack);
+
+console.log(arrayWithIndexes);
+// Result: ['1 is at index 0', '2 is at index 1', '3 is at index 2']
+```
+When dealing with `return` values in a `forEach` loop, extra caution has to be taken. Let us use the following code examples to demonstrate this:
+
+we write a simple function to check if an array of numbers contains one or more even numbers
+
+- returning values in `for...of` loops works normal
+
+```js
+const isEven = (...array) =>{
+  for(const n of array){
+    if(n % 2 === 0) return true;
+  }
+
+  return false;
+}
+
+console.log(isEven(2, 4, 5, 6))
+//result: true
+```
+From the code above, the function `isEven` returns `true` because the first even number it encounters is `2` and it returns `true` immediately. This is the expected behavior. In a case where there are no even numbers in the array, the function returns `false` as expected. This is because the `return false` statement is outside the loop and only gets executed if the loop completes without returning `true`. We cannot say the same for the `forEach()` loop. Let us see why:
+
+
+- returning values in `forEach` loops does not work as expected
+
+```js
+const isEven = (...array) =>{
+ array.forEach(n=>{
+  if(n % 2 === 0) return true;
+ })
+
+  return false;
+}
+
+console.log(isEven([2, 4, 5, 6]))
+//result: false
+```
+
+From the code above, the function `isEven` returns `false` even though there is an even number in the array. This is because the `return true` statement inside the `forEach` loop does not return from the `isEven` function but from the `forEach` loop. The `return true` statement only returns from the callback function passed to the `forEach` loop. The reason is on every iteration of the loop, the return values gets discarded and when the loop in done executing, control is transfered to the next statement outside of the loop, hence the `return false` statement eventually gets executed.
+
+How do we solve this problem? we can use a slightly different approach where we use a varaiable to keep track of the truthy or falsy state like so:
+
+```js
+const isEven = (...array) =>{
+
+  let state = false;
+ array.forEach(n=>{
+  if(n % 2 === 0) state = true;
+ })
+
+  return state;
+}
+
+console.log(isEven([2, 4, 5, 6]))
+//result: true
+```
+This way we avoid that edge case with the `forEach()` loop.
+
+### Conclusion
+
+
