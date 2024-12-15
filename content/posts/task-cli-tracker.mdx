@@ -8,85 +8,111 @@ date: 2024-07-08
 
 In this tutorial, we'll build a command-line task tracker application using Node.js. We'll go through each step of creating a practical CLI tool that helps manage tasks efficiently.
 
+To simplify things some keywords will be linked externally for detalied information.
+
 ## Prerequisites
 To be able to understand this tutorial, you need to have a basic understanding of JavaScript and Node.js. You should have Node.js installed on your machine. If you don't have it installed, you can download it from the [official Node.js website](https://nodejs.org/).
 
-We would be building this project in 4 phases for better understanding:
+## Requirements
+The app should make this functionalities possible:
 
-- **Phase 1**: Project Setup.
-- **Phase 2**: Adding tasks to the list.
-- **Phase 3**: Marking tasks as done and deleting tasks.
-- **Phase 4**: Saving the tasks to a file.
+- Add, Update, and Delete tasks
+- Mark a task as in progress or done
+- List all tasks
+- List all tasks that are done
+- List all tasks that are not done
+- List all tasks that are in progress
 
-To keep things simple, we would explore the details of each phase in the following sections.
+## Constraits
+- Use positional arguments in command line to accept user inputs.
+- Use a JSON file to store the tasks in the current directory.
+- The JSON file should be created if it does not exist.
+- Use the native file system module of your programming language to interact with the JSON file.
+- Do not use any external libraries or frameworks to build this project.
+- Ensure to handle errors and edge cases gracefully.
 
-## Phase 1: Project Setup
+## Example usage
 
-### Project structure
+```bash
+# Adding a new task
+task-cli add "Buy groceries"
+# Output: Task added successfully (ID: 1)
 
+# Updating and deleting tasks
+task-cli update 1 "Buy groceries and cook dinner"
+task-cli delete 1
+
+# Marking a task as in progress or done
+task-cli mark-in-progress 1
+task-cli mark-done 1
+
+# Listing all tasks
+task-cli list
+
+# Listing tasks by status
+task-cli list done
+task-cli list todo
+task-cli list in-progress
 ```
-task-cli/
-├── data/               # Directory for our JSON storage
-├── src/                # Directory for our source code
-│   └── commands/       # Directory for command handlers
-├── index.js
-├── package.json
-└── README.md
-```
 
-### Step 1: Create a new Node.js project and run `npm init` command.
+##  Basic Project Setup (Getting Started)
+
+We will build this app assuming we do not know how the project structure should be. Simply put, we would follow the thought process of a developer who has not built this project before.
+
+assiming we already have node.js installed we may want to go ahead and initialize a node.js project like so:
 
 ```bash
 # Create a directory for your project
-mkdir task-cli
+mkdir task-tracker-cli
 cd task-cli
 
 # Initialize npm project
 npm init -y
-```
 
-### Step 2: create your main file
-
-```bash
-# Create index.js file
+# Create index.js file as entry point for the project
 touch index.js  # On Unix/Mac
 # OR
 type nul > index.js  # On Windows
 ```
+by then our project stucture will look like so:
 
-### Step 3: Add the shebang line to the top of your `index.js` file
-
-We have to make the file executable by adding the shebang line at the top of the `index.js` file.
+```
+task-cli/     # Directory for command handlers
+├── index.js
+└── package.json
+```
+Let us think about how we would run our application in the terminal.
+To make our app run we have to make our entry point `index.js` executable by adding the [shebang](https://dev.to/vectordatabasetop/shebang-line-a-complete-explaination-4ai1) line at the top of out code in the `index.js` file.
 
 ```index.js
 #!/usr/bin/env node
-/*This line tells Unix-like systems
-"Hey, use Node.js to run this file!" */
+/*This line tells Unix-like systems "Hey, use Node.js to run this file!" */
+
+console.log("CLI is working")
 ```
 
-### Step 4: Update the `package.json` file
+Now that we have added the shebang line lets us think about how we will execute out `index.js` file.
+Normally we would run `node index.js` in the CLI to run the file but with the shebang line we can configure our app to execute the `index.js` by adding the following configuration to our `package.json`:
 
-Add the following configuration to the `package.json` file:
-
-```json
+```package.json
 // ...other existing configurations
 {
   "bin": {
-    "task-cli": "./index.js" //This makes your command available globally when installed
+    "task": "./index.js" //This makes your command available globally when installed
   }
 }
 ```
 This tells npm:
 
-- Create a command called "task-cli"
-- When this command is run, execute the file at "./index.js"
+- Create a command called `task`
+- When this command is run, execute the file at `index.js`
 
 Now we have to make our package available locally for testing by running the following command:
 
 ```bash
 npm link
 ```
-This creates a symbolic link to your package globally. After running this, you should be able to use the task-cli command from your terminal.
+This makes it possible for you to run this CLI locally anywhere on your machine.
 
 now to test if our CLI is working, run the following command:
 
@@ -98,20 +124,27 @@ console.log("CLI is working!");
 - Run the following command in your terminal:
 
 ```bash
-task-cli
+task
 ```
 
 You should see "CLI is working!" in the console, which means our CLI is working as expected.
 
-### Step 5: Capture command-line arguments
+Now that our basic setup is working, we need to achive our first objective in the requirement, to *add*, *list*, *update* and *delete* tasks.
+Normally these two things should come to mind when you have to add, update or delete something:
+- Where to add, update or delete (storage)
+- How to add, update or delete (from CLI we will need commands)
 
-To capture command-line arguments will make is possible for the the CLI to understand commands like `task-cli add "Buy groceries"` or `task-cli list`.
+So if you guessed right, the next step should be setting up or storage system
 
-We will use the `process.argv` array to capture the command-line arguments. The first two elements of the array are the path to Node.js and the path to the script being run. The rest of the elements are the command-line arguments.
 
-{/* probably have to come back here latter and finish up cause i do not really get what is going on here */}
+### Create JSON file storage stucture
 
-### Step 6: Create JSON file storage stucture
+The constraints for storage:
+- Use a JSON file to store the tasks in the current directory.
+- The JSON file should be created if it does not exist.
+- Use the native file system module of your programming language to interact with the JSON file.
+
+Per our constraints we need to can create the JSON file but either ways, our program should be able to create one when the CLI is run. However we will startof by creating a `data` directory in the root of our project with a `tasks.json`
 
 Create a `data` directory in the root of your project to store the tasks in a JSON file.
 
@@ -125,12 +158,35 @@ the following structure:
   "tasks": []  //empty array to store tasks
 }
 ```
-- In implementation we sould need to first check if the file exists, if it does not, we would create it and write the above content to it.
-- If the file exists, we would read from it.
 
-Now let us implement this:
+our updated project stucture will by then look like this:
 
-- create a utils folder in the `src` directory and create a file called `storage.js` in it and add the following code:
+```
+task-cli/
+├── data/
+├── index.js
+└──package.json
+```
+
+Now the next thing would be to implement the storage. Think about storage systems this way:
+- we need to be able to get data from the storage (read from storage)
+- we should be able to store data in the storage (write to storage or save to storage)
+
+so basically we would need two functions to read from and save to our `tasks.json` if it already exists.
+In a situation where it does not exist we would need to create one.
+
+Now create a utils folder in the root of the project and create a file called `storage.js`
+
+```
+task-cli/
+├── data/
+├── index.js
+├── utils/
+│   └── storage.js
+└──package.json
+```
+
+Now let us start the storage implementation:
 
 ```storage.js
 const fs = require('fs');
@@ -138,8 +194,7 @@ const path = require('path');
 
 /*
  * DEFINE PATHS
- We are telling Node.js where to store our data and tasks.json file
-
+ We need to tell Node.js where to store our data and tasks.json file
 */
 const DATA_DIR = path.join(__dirname, '../../data')
 const TASKS_FILE = path.join(DATA_DIR, 'tasks.json')
@@ -147,16 +202,16 @@ const TASKS_FILE = path.join(DATA_DIR, 'tasks.json')
 
 /*
  *INITIALIZE STORAGE SYSTEM
- *CREATE DATA DIRECTORY AND TASKS.JSON FILE IF THEY DO NOT EXIST
+ create data directory and `task.json` file if they do not exist
 */
-const initailizeStrorage = () => {
+const initializeStorage = () => {
     try{
         //check if dir exist, if not create it
         if(!fs.existsSync(DATA_DIR)){
             fs.mkdirSync(DATA_DIR)
         }
 
-        // check if task.json exists else create it
+        // check if task.json exists else create it a JSON structure
         if(!fs.existsSync(TASKS_FILE)){
                 const initialData ={
                     tasks: []
@@ -167,15 +222,16 @@ const initailizeStrorage = () => {
 
 
     }catch(error){
+        // log error message and exit if we can't initialize storage
         console.log('Error initializing storage:', error.message);
-        process.exit(1)// exit if we can't initialize storage
+        process.exit(1)
     }
 
 }
 
 /**
 * WRITE FUNCTION TO READ ALL TASKS FROM STORAGE
-* @returns {Array} Aray of tasks
+* @returns {Array} Array of tasks
 */
 
 const readTasks =()=>{
@@ -204,15 +260,223 @@ const readTasks =()=>{
     }
  }
 
- //functions to use in other files
 
+ // export functions to use in other files
  module.exports = {
-    initailizeStrorage,
+    initializeStrorage,
     readTasks,
     saveTasks
  };
 
 ```
+Now that we are done with our storage system, we need check if it works by testing it. Again we would need to run the CLI again but unfortunatley we will not the right reponse unless we import the storage initialization function and iniitialize it in our `index.js` file like so:
+
+```index.js
+#!/usr/bin/env node
+/*This line tells Unix-like systems "Hey, use Node.js to run this file!" */
+
+console.log("CLI is working")
+
+// Import our storage utility
+const storage = require('./utils/storage');
+
+// Initialize storage when CLI starts
+storage.initializeStorage();
+```
+
+Now it is time to test our app and see if our storage system will be initialized as expected.
+Run the command again and you should see the `CLI is working` console log as usual and also check your
+`data` folder to see if you have the `task.json` file created as expected.
+
+```bash
+task
+```
+
+Now we have an update in our project structure with a new `task.json` file created in the data directory.
+
+```
+task-cli/
+├── data/
+│   └── task.json
+├── index.js
+├── utils/
+│   └── storage.js
+└──package.json
+```
+The content of our `task.json` file should be like so:
+
+```json
+{
+  "tasks": []
+}
+```
+
+Now that we have successfully initialized our storage system, we can move to the next bullet point:
+- How to add, update or delete (from CLI we will need commands)
+
+If you pay close attention you would realize we handled the storage in a **utils** directory and so it would be cool to introduce a new directory, maybe **commands** to handle the various task operations.
+
+Let us update the project structure to have a **commands** directory with `add.js`, `list.js`, `del.js`, and `update.js` files:
+
+```
+task-cli/
+├── commands/
+│   ├── add.js         # Handles adding tasks
+│   ├── list.js        #  Lists tasks
+│   ├── delete.js      #  Deletes tasks
+│   ├── update.js      #  Updates tasks
+├── data/
+│   └── tasks.json     # JSON file to store tasks
+├── utils/
+│   └── storage.js     # Utility functions for managing data storage
+├── index.js           # Entry point for the CLI
+└── package.json       # Project metadata and dependencies
+
+```
+
+Now let up program our CLI to add tasks by adding the following code to the `add.js` file.
+
+```add.js
+//import our storage functions
+const storage = require('../utils/storage');
+
+//function to add task
+function add = (description) => {
+    //log error mesasge if command has no description eg `task add <nothing>`
+    if (!description) {
+        console.log('Please provide a task description');
+        return;
+    }
+
+    //read all tasks
+    const tasks = storage.readTasks();
+
+    //create new task
+    const newTask = {
+        id: tasks.length + 1,
+        status: 'todo',
+        description: description,
+        status: 'todo',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+    };
+
+    //push new task to the `task` array
+    tasks.push(newTask);
+
+    //write the updated tasks array to storage and inform user that the task has been sucessully added
+    storage.saveTasks(tasks);
+    console.log(`Task added successfully (ID: ${newTask.id})`);
+}
+
+//export add fuction to be used in `index.js`
+module.exports = add;
+
+```
+
+Now that we have implemented our first main functionality, we need to test it out and be sure it works before we proceed to the next.
+
+before then let us do a quick recap, we have initialized our project, made our entry point executable with a command, created our storage and implemented the task adding functionality.
+
+Now to be able to add tasks, we need to use a command like `task add 'buy groceries'.
+I think we should try to understand what happens when we type `task add 'buy groceries'` in the CLI and hit enter
+
+whenever we use the cli, the commands we write are passed to the script programmed to execute that command before it can be executed.
+Now the question is, how is that passing done? That is where the `process.argv` in node.js comes in handy.
+The `process.argv` is an array provided by node that can capture command line arguments and parse it to the script responsible for executing the command, which in our case is the `index.js` file.
+
+This is how it happen:
+```bash
+process.argv[0] # captures the path to the node executable file
+process.argv[1] # captures the the path to our script `index.js`
+process.argv[2] # and beyond capture the rest of the arguments eg. add groceries
+```
+In that case since our `index.js` file is what gets executed whenever we run the command, we would need add find away to add some line of code to capture the arguments.
+
+If the `process.argv` is an array it means we can destruture it to get the arguments we need from the command:
+
+```index.js
+#!/usr/bin/env node
+/*This line tells Unix-like systems "Hey, use Node.js to run this file!" */
+
+console.log("CLI is working")
+
+// Import our storage utility
+const storage = require('./utils/storage');
+
+// Initialize storage when CLI starts
+storage.initializeStorage();
+
+// Get command and arguments
+const [,, command, ...args] = process.argv;
+```
+
+The arguments we needed were process.argv[2]...process.argv[n], n could be any index.
+we use two commas to represent the first two arguments that we do not need to work with.
+From the command `task add 'buy groceries':
+
+```bash
+#  ,,       - process.argv[0] and process.process.argv[1] (the node exe and index.js)
+# command   - process.argv[2] (task)
+# ...args:  - process.argv[3] ('buy groceries')
+```
+
+Now that we have captured the arguments, we can use pass them to our functions to be executed by our program.
+In this case we want to parse `command` and `...arg` to our **add** function.
+
+```js
+const add = require('./src/commands/add');
+
+const add = require
+switch(command){
+    case 'add':
+        add(args.join(' ')) // args could be 'buy groceries'
+    default:
+        return;
+
+}
+```
+
+Now let us update our `index.js` with this code.
+
+```index.js
+#!/usr/bin/env node
+/*This line tells Unix-like systems "Hey, use Node.js to run this file!" */
+
+console.log("CLI is working")
+
+// Import our storage utility
+const storage = require('./utils/storage');
+
+// Initialize storage when CLI starts
+storage.initializeStorage();
+
+// Get command and arguments
+const [,, command, ...args] = process.argv;
+
+const add = require
+switch(command){
+    case 'add':
+        add(args.join(' ')) // args could be 'buy groceries'
+    default:
+        return;
+
+}
+```
+
+
+
+
+
+### Step 5: Capture command-line arguments
+
+
+
+
+
+{/* probably have to come back here latter and finish up cause i do not really get what is going on here */}
+
+
 - next let us create these files:
 
 ```
