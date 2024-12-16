@@ -464,7 +464,117 @@ switch(command){
 }
 ```
 
+Hurray we have successfully implemented the add functionality of our CLI. Now we can test it by running the following command:
 
+```bash
+task add 'buy groceries'
+```
+
+You should see the message `Task added successfully (ID: 1)` in the console, which means our add functionality is working as expected.
+Then your `task.json` file should look like this:
+
+```json
+{
+  "tasks": [
+    {
+      "id": 1,
+      "status": "todo",
+      "description": "buy groceries",
+      "createdAt": "2024-07-08T12:00:00.000Z",
+      "updatedAt": "2024-07-08T12:00:00.000Z"
+    }
+  ]
+}
+```
+
+Now we can go ahead and implemment deltetion of tasks by adding the following code to the `delete.js` file:
+
+```delete.js
+const { readTasks, saveTasks } = require('../utils/storage');
+
+function del(taskId) {
+    // Check if taskId is provided
+  if (!taskId) {
+    console.log('Please provide a task ID to delete');
+    process.exit(1);
+}
+    // Convert taskId to a number
+    const id = parseInt(taskId);
+
+    // Validate input
+    if (isNaN(id)) {
+        console.error('Invalid task ID. Please provide a valid number.');
+        process.exit(1);
+    }
+
+    // Read existing tasks
+    const tasks = readTasks();
+
+    // Find the index of the task with the given ID
+    const taskIndex = tasks.findIndex(task => task.id === id);
+
+    // Check if task exists
+    if (taskIndex === -1) {
+        console.error(`Task with ID ${id} not found.`);
+        process.exit(1);
+    }
+
+    // Remove the task
+    tasks.splice(taskIndex, 1);
+
+    // Save updated tasks
+    saveTasks(tasks);
+
+    console.log(`Task with ID ${id} deleted successfully.`);
+}
+
+module.exports = del;
+```
+
+Then we update our `index.js` file to include the delete functionality:
+
+```index.js
+#!/usr/bin/env node
+/*This line tells Unix-like systems "Hey, use Node.js to run this file!" */
+
+console.log("CLI is working")
+
+// Import our storage utility
+const storage = require('./utils/storage');
+
+// Initialize storage when CLI starts
+storage.initializeStorage();
+
+// Get command and arguments
+const [,, command, ...args] = process.argv;
+
+const add = require
+switch(command){
+    case 'add':
+        add(args.join(' ')) // args could be 'buy groceries'
+    case 'del':
+        del(args.[0]) // args could be '1'
+    default:
+        return;
+
+}
+```
+Now we can test the delete functionality by running the following command:
+
+```bash
+task del 1
+```
+
+You should see the message `Task with ID 1 deleted successfully.` in the console, which means our delete functionality is working as expected.
+Then your `task.json` file should look like this:
+
+```json
+{
+  "tasks": []
+}
+```
+
+Now that we have successfully implemented the delete functionality, we can move on to the next step, which is listing tasks.
 
 
 
