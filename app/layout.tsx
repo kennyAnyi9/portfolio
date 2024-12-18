@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
-
 import "./globals.css";
 import GridPattern from "@/components/ken-ui/pattern";
 import { cn } from "@/lib/utils";
 import Hero from "@/components/nav/hero";
-
 import { Footer } from "@/components/nav/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navigation from "@/components/terminal/navigation";
