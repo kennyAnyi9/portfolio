@@ -1,6 +1,3 @@
-
-
-import Navigation from "@/components/terminal/Navigation";
 import { ReactNode } from "react";
 
 export default function LandingPage({ children }: { children: ReactNode }) {
