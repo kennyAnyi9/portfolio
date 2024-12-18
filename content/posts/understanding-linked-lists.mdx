@@ -1,15 +1,15 @@
 ---
-title: Understanding Linked Lists
-description: A beginner-friendly introduction to linked lists and their applications.
+title: Understanding Linked Lists I
+description: A beginner-friendly introduction to linked lists.
 date: 2022-12-09
 ---
 
 ### Introduction
-Just like an array, a linked list is a data structure that represents data as a list of items. However, the way they store and access data is quite different. At first glance, visual representations of arrays and linked lists might seem similar, but under the hood, there are significant differences.
+A linked list is a data structure that organizes data into a sequence of items, much like an array. However, the way linked lists store and access data is quite different. Arrays are a great starting point to build a conceptual foundation for linked lists. By comparing these structures, you'll better understand their unique characteristics and use cases.
 
-You may wonder why we’re focusing on arrays before diving into linked lists. The reason is simple: understanding arrays provides a solid visual foundation that makes it easier to grasp how linked lists operate. By comparing the two, you'll gain a better understanding of their structure and how they handle operations.
+### Visualizing Arrays vs. Linked Lists
 
-Let’s visualize these two data structures to get a clearer picture:
+Here’s a simple representation of an array:
 
 ```bash
 # Array
@@ -17,6 +17,7 @@ Let’s visualize these two data structures to get a clearer picture:
 | 1 | 2 | 3 | 4 |
 +---+---+---+---+
 ```
+And a linked list:
 
 ```bash
 # Linked list
@@ -25,21 +26,13 @@ Let’s visualize these two data structures to get a clearer picture:
 +---+    +---+    +---+    +---+
 ```
 
-You may notice that for both arrays and linked lists, we have elements stored in cells that are close to each other, with arrows showing the connection in the linked list. The reason for this representation is simplicity and to give you a visual understanding of how operations are performed in linked lists.
+At first glance, both arrays and linked lists appear to store elements sequentially. In the linked list diagram, the arrows indicate how each item (node) connects to the next. This representation is simplified to help visualize how linked lists work. However, in memory, the representation above isn’t entirely correct—except for the array. We can visualize memory as a large block with smaller cells.
 
-However, in memory, the representation above isn’t entirely correct—except for the array. We can visualize memory as a large block with smaller cells like so:
-
-```bash
-+-----+-----+-----+-----+-----+-----+-----+-----+
-|     |     |     |     |     |     |     |     |
-+-----+-----+-----+-----+-----+-----+-----+-----+
-|     |     |     |     |     |     |     |     |
-+-----+-----+-----+-----+-----+-----+-----+-----+
-|     |     |     |     |     |     |     |     |
-+-----+-----+-----+-----+-----+-----+-----+-----+
-```
+### Memory Representation
 
 Now, let’s look at an array in memory:
+
+In memory, arrays store their elements in contiguous blocks. Here’s an example:
 
 ```bash
 +-----+-----+-----+-----+-----+-----+-----+-----+
@@ -51,7 +44,7 @@ Now, let’s look at an array in memory:
 +-----+-----+-----+-----+-----+-----+-----+-----+
 ```
 
-Next, let’s look at a linked list in memory:
+By contrast, linked lists store nodes in scattered locations, with each node pointing to the next:
 
 ```bash
 +-----+-----+-----+-----+-----+-----+-----+-----+
@@ -63,39 +56,76 @@ Next, let’s look at a linked list in memory:
 +-----+-----+-----+-----+-----+-----+-----+-----+
 ```
 
-The representations above show us the differences in how arrays and linked lists are stored in memory. The array stores its elements in contiguous memory locations, while the linked list stores its elements in scattered memory locations, connected by pointers.
+The representations above show us the difference in how arrays and linked lists are stored in memory. Array elements are  stored  in contiguous memory locations, while linked list elements are stored in scattered memory locations, connected to each other by pointers.
 
 This significantly impacts how we access, delete, or insert data into these data structures. What makes the linked list unique is how these operations are performed.
 
+Now that we have seen how different linked lists are, let us delve deeper into understanding it as a data structure.
 
-I made sure to correct grammar, spelling mistakes, and improve clarity while preserving the structure. Let me know if you'd like any further revisions!
+Linked list may be scattered across different memory locations but connnected to each other. Each Item in a linked list is refered to as a node. So the question now is, how are these nodes connected if they really are scattered in memory. How do we know what nodes belong to the same list?
+Luckily, each node comes with an extra piece of information that tells the computer where to find the next node. Meaning each node is made up of two cells, the first contains the actual data while the second contains a memory address showing the location of the next node in the list. So this second cell is called the pointer which serves as a link to the memory address of the next node.
 
-1. **Introduction**
-   - What is a linked list?
-   - Why are they important in computer science?
-   - Real-world applications of linked lists.
+![linked list](https://res.cloudinary.com/daqo7qgci/image/upload/v1734357222/linked-list_gnzcyp.png)
 
-2. **Types of Linked Lists**
-   - Singly Linked List.
-   - Doubly Linked List.
-   - Circular Linked List.
 
-3. **Basic Operations**
-   - Insertion.
-   - Deletion.
-   - Traversal.
+From the diagram above we can see that we have four items but with eight cells in memory, each having the list item itself and the pointer to the next node respectively. The first node called the `head` and the last called the `tail` whose extra piece of information points to `null`. So all the computer needs to start working is the memory address of the `head` node then it can follow the the link to the subsequent nodes.
 
-4. **Comparison with Arrays**
-   - Advantages and disadvantages of linked lists vs. arrays.
+Now that we have a clear picture of what a linked list is let us move on to how to implement a simple liniked list.
+Here are a few things to consider:
+- We think of a linked list as a series of items scrattered in memory but linked together.
+- meaning we can see each item as a separate entity called the node.
+- the nodes are identical since they all have two parts, the item and a reference to the next node
+- meaning we can form a blueprint and use it to create several instances of the nodes
+- when we are done with the several instances then we link them togehter.
+Here is an implementation in javascript
 
-5. **Common Use Cases**
-   - Implementation of stacks and queues.
-   - Navigation systems (e.g., undo/redo functionality).
 
-6. **Code Examples**
-   - Implementing a basic singly linked list in JavaScript or Python.
-   - Adding and removing nodes.
+Creating the bluprint with clases in javasript:
+```js
+class Node {
+    constructor(item) {
+        // 'item' is the data stored in the node
+        this.item = item;
 
-7. **Conclusion**
-   - Recap the importance of linked lists.
-   - How mastering them helps in understanding more complex data structures.
+        // 'next_node' is initially null
+        // This will later point to the next node in the list
+        this.next_node = null;
+    }
+}
+```
+
+Creating instances of the node class
+
+```js
+//now we have a blueprint so we create several actual instances of the blueprint scatered in memory
+const node1 = new Node("first");
+const node2 = new Node("second");
+const node3 = new Node("Third")
+
+console.log(`
+ node1: ${node1.item},  points to ${node1.next_node}
+ node2: ${node2.item},  points to ${node2.next_node}
+ node3: ${node3.item},  points to ${node3.next_node}
+`)
+
+```
+
+connecting the nodes:
+
+```js
+node1.next_node = node2
+node2.next_node = node3
+
+console.log(`
+ node1: ${node1.item}, node1 points to ${node1.next_node.item}
+ node2: ${node2.item}, node2 points to ${node2.next_node.item}
+ node3: ${node3.item}, node3 points to ${node3.next_node}
+`)
+
+console.log(`${node1.item} -> ${node1.next_node.item} -> ${node3.item} -> ${node3.next_node}`)
+```
+One thing I need you to note is that we used variables to link the nodes to form a linked list. This approach works but is not ideal for carrying out operations on the linked list because things could get messy
+
+Imagine you design a train  and developed several portions of the train, anyone could come and link them togehter but will never know where the head of the train is nor what portion they are dealing with. However the train station manager knows where the train starts and where it ends.
+
+What this tells us is that we need soemthing better to manage the nodes we just created. To do this we would need to implement a `LinkedList class` to manage the linking and other operations such as adding , removing or simply traversing the list.
