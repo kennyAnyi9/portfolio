@@ -19,7 +19,9 @@ Here’s a simple representation of an array:
 And a linked list:
 ![linked list](https://res.cloudinary.com/daqo7qgci/image/upload/v1734489271/linked_nbfjh1.avif)
 
-At first glance, both arrays and linked lists appear to store elements sequentially. In the linked list diagram, the arrows indicate how each item (node) connects to the next. This representation is simplified to help visualize how linked lists work. However, in memory, the representation above isn’t entirely correct—except for the array. We can visualize memory as a large block with smaller cells.
+At first glance, both arrays and linked lists appear to store elements sequentially. In the linked list diagram, the arrows indicate how each item (node) connects to the next. This representation is simplified to help visualize how linked lists work. However, in memory, the representation above isn’t entirely correct—except for the array.
+
+If we visualize the computer memory as a large block with smaller cells we can simply use the illustrations below to grasp a picture of how arrays are stored in memory versus how linked lists are stored.
 
 ### Memory Representation
 
@@ -37,7 +39,7 @@ This significantly impacts how we access, delete, or insert data into these data
 
 ### Linked list as a data structure
 
-Linked list may be scattered across different memory locations but connnected to each other. Each Item in a linked list is refered to as a node. So the question now is, how are these nodes connected if they really are scattered in memory? How do we know what nodes belong to the same list?
+The nodes of a linked list may be scattered across different memory locations but connnected to each other. Each Item in a linked list is refered to as a node. So the question now is, how are these nodes connected if they really are scattered in memory? How do we know what nodes belong to the same list?
 Luckily, each node comes with an extra piece of information that tells the computer where to find the next node. Meaning each node is made up of two cells, the first contains the actual data while the second contains a memory address showing the location of the next node in the list. This second cell is called the pointer which serves as a link to the memory address of the next node.
 
 ![linked list](https://res.cloudinary.com/daqo7qgci/image/upload/v1734357222/linked-list_gnzcyp.png)

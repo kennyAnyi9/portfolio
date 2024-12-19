@@ -1,10 +1,12 @@
 ---
- title: useState Gotchas
+ title: React useState Gotchas 🚀
  description: A list of gotchas when using React's useState hook
  date: 2024-12-9
 ---
 
-### Introduction
+![useState](https://res.cloudinary.com/daqo7qgci/image/upload/v1734542905/useState-hook-twitter_zorave.png)
+
+
 If you’ve used React’s `useState` hook, you already know how powerful it is for managing state in your components. However, what some might call "gotchas" are actually hidden superpowers. Once you understand them, these quirks can help you write cleaner, more efficient code. In this article, we’ll explore these nuances and show you how to turn them into tools for better React development.
 
 
@@ -29,7 +31,8 @@ const handleClick = () => {
 ```
 
 **The Solution: Use the Functional Update Pattern**
-The functional update pattern ensures your state updates always use the latest value. React provides a `prevState` argument, which reflects the most up-to-date state.
+
+The functional update pattern ensures your state updates always using the latest value. React provides a `prevState` argument, which reflects the most up-to-date state.
 ```state.jsx
 setCount(prevCount => prevCount + 1);
 ```
@@ -67,7 +70,7 @@ setUser(prevUser => { age: prevUser.age + 1 });
 ```
 
 The state will mutate incorrectly, replacing the entire object with a partial update:
-```state.jsx
+```
 {
   age: 31
 }
@@ -121,8 +124,6 @@ Updating `count` won’t impact `name`, and vice versa. This independence is by 
 
 
 ### Conclusion
-With these insights into `useState`, you can write cleaner, more efficient React components. Understanding these nuances will help you avoid common pitfalls and leverage the full power of React’s state management. Use these "gotchas" to your advantage and take your React development to the next level. Happy coding!
+With these insights on `useState`, you can write cleaner, more efficient React components. Understanding these nuances will help you avoid common pitfalls and leverage the full power of React’s state management. Use these "gotchas" to your advantage and take your React development to the next level.
 
-
-
-Let me know if you'd like further refinements or additions!
+Happy coding :)

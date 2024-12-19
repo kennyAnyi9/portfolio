@@ -1,8 +1,11 @@
 ---
-title:  Building a Task Tracker CLI in Node.js
+title:  Building a Task Tracker CLI in Node.js ✅
 description: Build a CLI app to track your tasks and manage your to-do list.
 date: 2024-07-08
 ---
+
+
+![console](https://res.cloudinary.com/daqo7qgci/image/upload/v1734549785/computer-terminal-showing-prompt-cursor-600nw-2210496609_crpwfl.webp)
 
 ## Introduction
 
@@ -59,7 +62,7 @@ task-cli list in-progress
 
 We will build this app assuming we do not know how the project structure should be. Simply put, we would follow the thought process of a developer who has not built this project before.
 
-assiming we already have node.js installed we may want to go ahead and initialize a node.js project like so:
+assuming we already have node.js installed we may want to go ahead and initialize a node.js project like so:
 
 ```bash
 # Create a directory for your project
@@ -82,7 +85,7 @@ task-cli/     # Directory for command handlers
 └── package.json
 ```
 Let us think about how we would run our application in the terminal.
-To make our app run we have to make our entry point `index.js` executable by adding the [shebang](https://dev.to/vectordatabasetop/shebang-line-a-complete-explaination-4ai1) line at the top of out code in the `index.js` file.
+To make our app run we have to make our entry point `index.js` executable by adding the [shebang](https://dev.to/vectordatabasetop/shebang-line-a-complete-explaination-4ai1) line at the top of our code in the `index.js` file.
 
 ```index.js
 #!/usr/bin/env node
@@ -91,7 +94,7 @@ To make our app run we have to make our entry point `index.js` executable by add
 console.log("CLI is working")
 ```
 
-Now that we have added the shebang line lets us think about how we will execute out `index.js` file.
+Now that we have added the shebang line lets us think about how we will execute our `index.js` file.
 Normally we would run `node index.js` in the CLI to run the file but with the shebang line we can configure our app to execute the `index.js` by adding the following configuration to our `package.json`:
 
 ```package.json
@@ -114,7 +117,7 @@ npm link
 ```
 This makes it possible for you to run this CLI locally anywhere on your machine.
 
-now to test if our CLI is working, run the following command:
+now to test if our CLI is working, do this:
 
 - add the following code to your `index.js` file:
 
@@ -129,7 +132,8 @@ task
 
 You should see "CLI is working!" in the console, which means our CLI is working as expected.
 
-Now that our basic setup is working, we need to achive our first objective in the requirement, to *add*, *list*, *update* and *delete* tasks.
+Now that our basic setup is working, we need to achieve our first objective in the requirement, to *add*, *list*, *update* and *delete* tasks.
+
 Normally these two things should come to mind when you have to add, update or delete something:
 - Where to add, update or delete (storage)
 - How to add, update or delete (from CLI we will need commands)
@@ -144,7 +148,7 @@ The constraints for storage:
 - The JSON file should be created if it does not exist.
 - Use the native file system module of your programming language to interact with the JSON file.
 
-Per our constraints we need to can create the JSON file but either ways, our program should be able to create one when the CLI is run. However we will startof by creating a `data` directory in the root of our project with a `tasks.json`
+Per our constraints we need to can create the JSON file but either ways, our program should be able to create one when the CLI is ran. However we will startof by creating a `data` directory in the root of our project with a `tasks.json`
 
 Create a `data` directory in the root of your project to store the tasks in a JSON file.
 
@@ -269,7 +273,7 @@ const readTasks =()=>{
  };
 
 ```
-Now that we are done with our storage system, we need check if it works by testing it. Again we would need to run the CLI again but unfortunatley we will not the right reponse unless we import the storage initialization function and iniitialize it in our `index.js` file like so:
+Now that we are done with our storage system, we need to check if it works by testing it. Again we would need to run the CLI  but unfortunatley we will not get the right response unless we import the storage initialization function and iniitialize it in our `index.js` file like so:
 
 ```index.js
 #!/usr/bin/env node
