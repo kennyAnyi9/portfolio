@@ -19,7 +19,7 @@ Here’s a simple representation of an array:
 And a linked list:
 ![linked list](https://res.cloudinary.com/daqo7qgci/image/upload/v1734489271/linked_nbfjh1.avif)
 
-At first glance, both arrays and linked lists appear to store elements sequentially. In the linked list diagram, the arrows indicate how each item (node) connects to the next. This representation is simplified to help visualize how linked lists work. However, in memory, the representation above isn’t entirely correct—except for the array.
+Both arrays and linked lists appear to store elements sequentially. In the linked list diagram, the arrows indicate how each item (node) connects to the next. This representation is simplified to help visualize how linked lists work. However, in memory, the representation above isn’t entirely correct—except for the array.
 
 If we visualize the computer memory as a large block with smaller cells we can simply use the illustrations below to grasp a picture of how arrays are stored in memory versus how linked lists are stored.
 
@@ -40,22 +40,21 @@ This significantly impacts how we access, delete, or insert data into these data
 ### Linked list as a data structure
 
 The nodes of a linked list may be scattered across different memory locations but connnected to each other. Each Item in a linked list is refered to as a node. So the question now is, how are these nodes connected if they really are scattered in memory? How do we know what nodes belong to the same list?
-Luckily, each node comes with an extra piece of information that tells the computer where to find the next node. Meaning each node is made up of two cells, the first contains the actual data while the second contains a memory address showing the location of the next node in the list. This second cell is called the pointer which serves as a link to the memory address of the next node.
+Luckily, each node comes with an extra piece of information that tells the computer where to find the next node. Meaning each node is made up of two cells, the first contains the actual data while the second contains a memory address pointing to the location of the next node in the list. This second cell is called the pointer which serves as a link to the memory address of the next node.
 
 ![linked list](https://res.cloudinary.com/daqo7qgci/image/upload/v1734357222/linked-list_gnzcyp.png)
 
 From the diagram above we can see that we have four items but with eight cells in memory, each having the list item itself and the pointer to the next node respectively. The first node represents the `head` and the last represents the `tail` whose extra piece of information points to `null`. So all the computer needs to start working is the memory address of the `head` node then it can follow the the link to subsequent nodes.
 
-### Basic implementaion of a linked list in javascript
+### Basic implementaion of a linked list in Javascript
 
 Here are a few things to consider:
-- earlier we thoughgt of a linked list as a series of items scrattered in memory but linked together.
-- meaning we can see each item as a separate entity called the node.
-- the nodes are identical since they all have two parts, the item and a reference to the next node
-- Then, we can form a blueprint and use it to create several instances of nodes
-- when we are done with the several instances, we link them together to form a linked list.
+- Earlier we thought of a linked list as a series of items scrattered in memory but linked together.
+- Meaning we can see each item as a separate entity called the *node*.
+- The nodes are identical since they all have two parts, the item and a reference to the next node which means, we can form a blueprint and use it to create several instances of nodes
+- When we are done with the several instances, we link them together to form a linked list.
 
-Creating the bluprint with clases in javasript:
+Creating the bluprint with clases:
 ```js
 class Node {
     constructor(item) {
@@ -69,7 +68,7 @@ class Node {
 }
 ```
 
-Creating instances of the node class
+Creating instances of the node class:
 
 ```js
 //now we have a blueprint so we create several actual instances of the blueprint scatered in memory
@@ -114,6 +113,6 @@ console.log(`${node1.item} -> ${node1.next_node.item} -> ${node3.item} -> ${node
  */
 ```
 
-Congratulations we just implemented a simple liked list. In part two of this blog we will delve deeper into the linked list data structure.
+That is all it takes to implement a simple linked list in Javascript. In the part II, we will look at how to perform operations on the linked list like adding, deleting, and searching for items in the list.
 
 Happy coding :)
