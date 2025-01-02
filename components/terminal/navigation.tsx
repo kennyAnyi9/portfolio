@@ -12,9 +12,9 @@ interface CommandConfig {
 
 const commands: CommandConfig[] = [
   { name: "home", shortcut: "h", path: "/" },
-  { name: "blog", shortcut: "b", path: "/blog" },
-  { name: "projects", shortcut: "p", path: "/projects" },
-  { name: "store", shortcut: "s", path: "/store" }
+  { name: "blog", shortcut: "b", path: "/blog" }
+//   { name: "projects", shortcut: "p", path: "/projects" },
+//   { name: "store", shortcut: "s", path: "/store" }
 ];
 
 const Navigation = () => {
@@ -133,7 +133,7 @@ const Navigation = () => {
       </div>
       {showTooltip && (
         <div className="hidden lg:absolute -bottom-12 left-1/2 transform -translate-x-1/2 bg-popover text-popover-foreground text-xs py-1 px-2 rounded">
-          Press first letter to quick navigate (h: home, b: blog, p: projects, s: store)
+          Press first letter to quick navigate (h: home, b: blog)
         </div>
       )}
     </div>

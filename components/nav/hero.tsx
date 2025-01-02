@@ -8,9 +8,9 @@ const Hero = () => {
     <div className="flex w-full mx-auto relative flex-row h-fit  pb-5 items-center justify-center mt-5 backdrop-blur-[2px]">
       <div className="flex flex-col justify-center items-start w-full">
         <BlurFade delay={BLUR_FADE_DELAY}>
-          <h1 className="font-normal leading-7 text-xl">Kennedy Anyidoho</h1>
-          <p className="text-xs font-light">
-            Software Engineer & Neuroscience enthusiast
+          <h1 className="font-normal leading-7 text-2xl">Kennedy Anyidoho</h1>
+          <p className="text-lg font-light">
+            Software Engineer
           </p>
         </BlurFade>
         <div className="flex flex-col gap-1 mt-3">
