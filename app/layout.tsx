@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Gabarito } from "next/font/google";
-import { GeistMono } from "geist/font/mono";
+import { Inter } from "next/font/google";
 import localFont from "next/font/local";
-
 import "./globals.css";
 import GridPattern from "@/components/ken-ui/pattern";
 import { cn } from "@/lib/utils";
 import Hero from "@/components/nav/hero";
-
 import { Footer } from "@/components/nav/footer";
+import { ThemeProvider } from "@/components/theme-provider";
+import Navigation from "@/components/terminal/navigation";
+import { AppThemeSwitcher } from "@/components/switch-mode";
+
 
 
 const mono = localFont({
@@ -22,7 +23,7 @@ const mono = localFont({
     weight: "100 900",
   });
 
-const inter = Gabarito({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-inter",
@@ -41,9 +42,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${monoLight.variable} px-5 lg:px-0 space-y-5 mt-[3rem] mx-auto`}
+        className={`${inter.className} ${monoLight.variable}`}
       >
-        {" "}
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            //forcedTheme="light"
+            disableTransitionOnChange
+          >
+ <main className=" px-5 lg:px-0 space-y-5 mt-[3rem] max-w-2xl mx-auto">
         <GridPattern
           width={30}
           height={30}
@@ -51,12 +59,16 @@ export default function RootLayout({
           y={-1}
           strokeDasharray={"4 2"}
           className={cn(
-            "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)] opacity-50 -z-20"
+            "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)] opacity-10 -z-20"
           )}
         />
         <Hero />
+        <AppThemeSwitcher/>
+        <Navigation />
         {children}
         <Footer />
+        </main>
+        </ThemeProvider>
       </body>
     </html>
   );

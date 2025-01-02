@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 0 10% 95%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -32,7 +34,7 @@
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 0, 0%, 13%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -59,11 +61,43 @@
   }
 }
 
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-[#191919] text-foreground text-white;
+    @apply bg-background text-foreground;
   }
+}
+
+/* rehype stuff */
+pre {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.dark pre {
+  background-color: #0d1117 !important;
+}
+
+pre code {
+  display: grid;
+}
+
+pre code .line {
+  padding: 0 1rem;
+  border-left: 3px solid transparent;
+}
+
+pre code .line.highlighted {
+  background-color: rgba(200, 200, 255, 0.1);
+  border-left-color: #3b82f6;
+}
+
+.word-highlighted {
+  background-color: rgba(255, 255, 0, 0.2);
+  padding: 2px;
+  border-radius: 3px;
 }

@@ -1,0 +1,66 @@
+---
+ title: What is tRPC? 🤔
+ description: A list of gotchas when using React's useState hook
+ date: 2025-1-2
+---
+
+![tRPC image](https://fireup.pro/_next/image?url=https%3A%2F%2Ffireup.pro%2Fuploads%2F2024%2F04%2Ftrpc-og.png&w=3840&q=75&dpl=dpl_28VLB2HbZERLpkp4oKNa75nVQgUr)
+<br/>
+<br/>
+# Introduction 🚀
+Building APIs that ensure seamless communication between the frontend and backend is a cornerstone of modern web development. However, maintaining type safety across this boundary can be a frustrating challenge, often leading to unnecessary complexity and reduced productivity. In this post, we’ll explore the common struggles developers face with type safety, how existing solutions like REST and GraphQL address these challenges (but not without trade-offs), and why tRPC emerges as a compelling alternative. By the end, you’ll understand how tRPC simplifies API development while enhancing type safety and developer experience.
+<br/>
+# The Challenges with Existing API Solutions
+
+When building APIs with REST or GraphQL, developers often encounter a common problem: balancing how flexible the solution is with how complicated it can become to use. While both options are powerful, they each come with their own set of challenges that can make development slower, more frustrating, and error-prone. Let’s take a closer look at the issues developers face when using these approaches.
+
+#### REST: Simple but Prone to Errors ❌
+REST APIs are simple and flexible, making them a popular choice for building web applications. However, they don't automatically ensure type safety, which leads to some issues:
+
+> -  Frontend and backend teams have to manually document the data formats, which can get outdated or mismatched.
+> -  Both client and server need separate validation, which leads to repetitive code.
+> -  Tools like Swagger/OpenAPI can help, but they require extra setup and effort.
+
+These challenges can slow down development and lead to errors.
+
+#### GraphQL: Type Safety at a Cost 💩
+GraphQL addresses many of REST’s shortcomings by enforcing a schema that defines the API’s shape and ensuring type-safe queries. However, this comes with its own challenges:
+
+> -  Setting up GraphQL requires a lot of repeated code to define how data should be fetched, which can become tedious.
+> -  GraphQL can fetch exactly what you need, but if queries aren’t designed well, it can either get too much data or not enough, affecting performance.
+> -  GraphQL has its own set of tools and ways of doing things, which can take time to learn and slow down how quickly teams can start using it.
+
+Even with these tools, maintaining type safety between the backend schema and frontend queries often involves additional libraries or code generation.
+<br/>
+# How tRPC Changes the Game
+
+tRPC simplifies API development by eliminating the need for separate schemas, boilerplate, or code generation. Here's how it contrasts with REST and GraphQL:
+
+#### 1. **Native Type Safety**
+- With tRPC, the backend and frontend share the same TypeScript types, ensuring type consistency without duplication.
+- Any change in the backend API is immediately reflected in the frontend, eliminating mismatches.
+
+#### 2. **Zero Boilerplate**
+- Unlike REST, there are no routes or controllers to define.
+- Unlike GraphQL, there’s no need for schemas, resolvers, or code generation tools.
+
+tRPC lets you define APIs as simple TypeScript functions, keeping things intuitive and fast.
+
+#### 3. **Validation Made Easy**
+- tRPC integrates seamlessly with libraries like Zod for runtime validation.
+- Input and output validation happen inline, ensuring data correctness without separate validation logic.
+
+#### 4. **Framework-Friendly**
+- tRPC was designed with modern frameworks like Next.js in mind, allowing you to define and consume APIs with minimal setup.
+- Server-Side Rendering (SSR) and real-time features like WebSockets are supported out of the box.
+
+#### 5. **Streamlined Developer Experience**
+- No additional tools are needed to sync types, reducing cognitive overhead.
+- Changes are immediately type-checked, preventing runtime errors before they happen.
+
+
+<br/>
+# Conclusion
+By addressing the core pain points of REST and GraphQL, tRPC strikes a perfect balance between simplicity and power. It’s lightweight, type-safe, and developer-friendly—designed to maximize productivity without sacrificing robustness.
+
+In my next blog on tRPC, we’ll dive deeper into how tRPC works and how you can get started with it to revolutionize your API development workflow.

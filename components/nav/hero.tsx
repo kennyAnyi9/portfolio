@@ -5,17 +5,17 @@ import BlurFade from "../ken-ui/blur-fade";
 
 const Hero = () => {
   return (
-    <div className="flex max-w-2xl mx-auto relative flex-row border rounded-md border-[#181818] h-fit items-center justify-center mt-5 p-2 backdrop-blur-[2px]">
+    <div className="flex w-full mx-auto relative flex-row h-fit  pb-5 items-center justify-center mt-5 backdrop-blur-[2px]">
       <div className="flex flex-col justify-center items-start w-full">
         <BlurFade delay={BLUR_FADE_DELAY}>
-          <h1 className="font-normal leading-7 text-xl">Kennedy Anyidoho</h1>
-          <p className="text-xs font-light text-gray-300">
-            Software Engineer & Neuroscience enthusiast
+          <h1 className="font-normal leading-7 text-2xl">Kennedy Anyidoho</h1>
+          <p className="text-lg font-light">
+            Software Engineer
           </p>
         </BlurFade>
         <div className="flex flex-col gap-1 mt-3">
           <BlurFade>
-            <p className="text-xs font-normal text-gray-400">
+            <p className="text-xs font-normal">
               Reach me at{" "}
               <Link
                 href="https://x.com/kennyAnyi9"
