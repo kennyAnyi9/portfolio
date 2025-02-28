@@ -62,28 +62,7 @@ export default function Home() {
               </p>
             </Link>
 
-          <Link
-            target="_blank"
-            className="flex flex-col w-full"
-            href="https://hamburgersui.vercel.app/"
-          >
-            <div className="flex gap-1 flex-row ">
-              <p className="text-base hover:underline leading-7 group">
-                Hamburgerui
-              </p>
-              <Badge
-                variant={"default"}
-                className="w-fit h-fit px-1 bg-[#2A3D50] text-[#2381DE] hover:bg-[#2A3D50] rounded-md my-auto"
-              >
-                in progress
-              </Badge>
-              <ArrowUpRight className="size-5 mb-1.5 opacity-50 my-auto" />
-            </div>
-            <p className="text-sm text-muted-foreground dark:text-gray-400">
-              Save valuable development time by utilizing our pre-built mobile
-              menus. Focus on what matters most - building a great app!
-            </p>
-          </Link>
+          
 
           <Link
             target="_blank"
@@ -112,7 +91,7 @@ export default function Home() {
           <Link
             target="_blank"
             className="flex flex-col w-full"
-            href="https://notfound.kennyanyi.me/"
+            href="https://notfound.kennyanyi.xyz/"
           >
             <div className="flex gap-1 flex-row ">
               <p className="text-base hover:underline leading-7 group">
@@ -134,7 +113,7 @@ export default function Home() {
           <Link
             target="_blank"
             className="flex flex-col w-full"
-            href="https://typeicon.kennyanyi.me/"
+            href="https://typeicon.kennyanyi.xyz/"
           >
             <div className="flex gap-1 flex-row ">
               <p className="text-base hover:underline leading-7 group">
