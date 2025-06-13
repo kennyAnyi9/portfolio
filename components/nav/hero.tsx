@@ -25,7 +25,7 @@ const Hero = () => {
               </Link>{" "}
               or{" "}
               <a
-                href="mailto:kennyanyi9@gmail.com"
+                href="mailto:ken.anyidoho@gmail.com"
                 className="underline underline-offset-1"
               >
                 kennyanyi9@gmail.com
