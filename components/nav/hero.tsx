@@ -28,7 +28,7 @@ const Hero = () => {
                 href="mailto:ken.anyidoho@gmail.com"
                 className="underline underline-offset-1"
               >
-                kennyanyi9@gmail.com
+                ken.anyidoho@gmail.com
               </a>
             </p>
           </BlurFade>
